@@ -13,6 +13,8 @@ class User(db.Model, SerializerMixin):
     edits = db.relationship('Edit', back_populates='user', cascade='all,delete-orphan')
     pages = association_proxy('edits', 'page')
 
+    serialize_rules = ('-edits.user',)
+
     def __repr__(self):
         return f'<User {self.id} {self.username}>'
 
@@ -28,6 +30,8 @@ class Edit(db.Model, SerializerMixin):
     user = db.relationship('User', back_populates='edits')
     page = db.relationship('Page', back_populates='edits')
 
+    serialize_rules = ('-user.edits', '-page.edits',)
+
     def __repr__(self):
         return f'<Edit {self.id} {self.user_id} {self.page_id}>'
 
@@ -42,6 +46,8 @@ class Page(db.Model, SerializerMixin):
 
     edits = db.relationship('Edit', back_populates='page', cascade='all,delete-orphan')
     users = association_proxy('edits', 'user')
+
+    serialize_rules = ('-edits.page',)
 
     def __repr__(self):
         return f'<Page {self.id} {self.title}>'
