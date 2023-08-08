@@ -14,7 +14,7 @@ function ViewHistory() {
                 setTitle(page.title)
                 setEdits(page.edits)
             })
-    })
+    },[])
 
     const editList = edits.map(edit =>{
         return <EditCard key={edit.id} edit={edit} /> 

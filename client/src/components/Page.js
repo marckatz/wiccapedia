@@ -13,7 +13,7 @@ function Page() {
       setTitle(page.title)
       setText(page.text)
     })
-  })
+  },[])
 
 
   return (
