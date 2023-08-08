@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
-function EditPage({ userId }) {
+function EditPage({ user }) {
     const { pageId } = useParams()
     const [title, setTitle] = useState('')
     const [text, setText] = useState('')
@@ -19,7 +19,7 @@ function EditPage({ userId }) {
         e.preventDefault()
         const edit_json = {
             page_id: pageId,
-            user_id: userId,
+            user_id: user.id,
             new_text: text
         }
         fetch('/create_edit', {
@@ -52,7 +52,7 @@ function EditPage({ userId }) {
                 </div>
             </div>
             <hr />
-            { userId? (
+            { user? (
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <textarea value={text} onChange={(e) => setText(e.target.value)}></textarea>
