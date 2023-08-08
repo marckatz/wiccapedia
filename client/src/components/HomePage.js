@@ -1,20 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import {useParams} from 'react-router-dom'
+import React from 'react';
 
-function Page() {
-  const {pageId} = useParams();
-  const [title, setTitle] = useState('')
-  const [text, setText] = useState('')
-
-  useEffect(() => {
-    fetch(`http://localhost:5555/pages/${pageId}`)
-    .then(r=>r.json())
-    .then(page => {
-      setTitle(page.title)
-      setText(page.text)
-    })
-  })
-
+function Page({ title, text }) {  
 
   return (
     <div className="container mt-5">
