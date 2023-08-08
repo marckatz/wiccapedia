@@ -80,7 +80,7 @@ function Signup({handleUser}) {
         <div className="col-md-4">
           <h2 className="text-center">Signup</h2>
           <form onSubmit={formik.handleSubmit}>
-            <div className="row-mb-1">
+            <div className="mb-1">
               <label htmlFor='username' className='form-label'>Username:</label>
               <input
                 type="text"
@@ -95,7 +95,7 @@ function Signup({handleUser}) {
               {/* {errors.username && <div className="invalid-feedback">{errors.username}</div>} */}
               <p style={{color : "red"}}> {formik.errors.username}</p>
             </div>
-            <div className="row-mb-1">
+            <div className="mb-1">
               <label className='form-label'>Password:</label>
               <input
                 type="password"

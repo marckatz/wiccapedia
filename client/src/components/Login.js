@@ -49,7 +49,7 @@ function Login({handleUser}) {
           <h2 className="text-center">Login</h2>
           {error && <div className="alert alert-danger">{error}</div>}
           <form onSubmit={(e) => e.preventDefault()}>
-            <div className="row-mb-1">
+            <div className="mb-1">
               <label className='form-label'>Username:</label>
               <input
                 type="text"
@@ -60,7 +60,7 @@ function Login({handleUser}) {
               />
             </div>
             <p></p>
-            <div className="row-mb-1">
+            <div className="mb-1">
               <label className='form-label'>Password:</label>
               <input
                 type="password"

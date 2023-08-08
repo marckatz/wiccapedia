@@ -72,9 +72,9 @@ function UserProfile({ userId }) {
         {success && <div className="alert alert-success">{success}</div>}
 
         {showChangePasswordForm ? (
-          <>
-            <div className="form-group">
-              <label>Current Password:</label>
+          <form onSubmit={e=>e.preventDefault()}>
+            <div className="mb-1">
+              <label className='form-label'>Current Password:</label>
               <input
                 type="password"
                 className="form-control"
@@ -82,8 +82,8 @@ function UserProfile({ userId }) {
                 onChange={(e) => setCurrentPassword(e.target.value)}
               />
             </div>
-            <div className="form-group">
-              <label>New Password:</label>
+            <div className="mb-1">
+              <label className='form-label'>New Password:</label>
               <input
                 type="password"
                 className="form-control"
@@ -91,8 +91,8 @@ function UserProfile({ userId }) {
                 onChange={(e) => setNewPassword(e.target.value)}
               />
             </div>
-            <div className="form-group">
-              <label>Confirm New Password:</label>
+            <div className="mb-3">
+              <label className='form-label'>Confirm New Password:</label>
               <input
                 type="password"
                 className="form-control"
@@ -100,20 +100,22 @@ function UserProfile({ userId }) {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
-            <button 
-              className="btn btn-danger" 
-              onClick={handlePasswordChange}
-              disabled={!currentPassword || !newPassword || !confirmPassword}
-            >
-              Change Password
-            </button>
-            <button 
-              className="btn btn-secondary ml-3" 
-              onClick={handleCancelChange} 
-            >
-              Cancel Change
-            </button>
-          </>
+            <div className='mb-1'>
+              <button 
+                className="btn btn-danger" 
+                onClick={handlePasswordChange}
+                disabled={!currentPassword || !newPassword || !confirmPassword}
+              >
+                Change Password
+              </button>
+              <button 
+                className="btn btn-secondary ms-3" 
+                onClick={handleCancelChange} 
+              >
+                Cancel Change
+              </button>
+            </div>
+          </form>
         ) : (
           <button 
             className="btn btn-outline-primary" 
