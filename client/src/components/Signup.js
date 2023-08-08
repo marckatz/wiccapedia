@@ -1,39 +1,41 @@
 import React, { useState } from 'react';
 import { useFormik } from "formik";
 import * as yup from "yup";
+import {useHistory} from 'react-router-dom';
 
-function Signup() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({ username: '', password: '' });
+function Signup({handleUser}) {
 
-  const handleSignup = () => {
-    let isValid = true;
+  // const [password, setPassword] = useState('');
+  // const [errors, setErrors] = useState({ username: '', password: '' });
+  const history = useHistory();
 
-    // Reset errors
-    setErrors({ username: '', password: '' });
+  // const handleSignup = () => {
+  //   let isValid = true;
 
-    // Validate username and password length
-    if (username.length < 6) {
-      setErrors((prevErrors) => ({ ...prevErrors, username: 'username too short!' }));
-      isValid = false;
-    }
+  //   // Reset errors
+  //   setErrors({ username: '', password: '' });
 
-    if (password.length < 6) {
-      setErrors((prevErrors) => ({ ...prevErrors, password: 'password too short!' }));
-      isValid = false;
-    }
+  //   // Validate username and password length
+  //   if (username.length < 6) {
+  //     setErrors((prevErrors) => ({ ...prevErrors, username: 'username too short!' }));
+  //     isValid = false;
+  //   }
+
+  //   if (password.length < 6) {
+  //     setErrors((prevErrors) => ({ ...prevErrors, password: 'password too short!' }));
+  //     isValid = false;
+  //   }
 
     // Check if username exists
     // if () {
     // setErrors((prevErrors) => ({ ...prevErrors, username: 'username already exists!' }));
-    // isValid = false
-    // }
+  //   // isValid = false
+  //   // }
 
-    if (isValid) {
-      // bulabula
-    }
-  };
+  //   if (isValid) {
+  //     // bulabula
+  //   }
+  // };
 
   const formSchema = yup.object().shape({
     // email: yup.string().email("Invalid email").required("Must enter email"),
@@ -57,7 +59,10 @@ function Signup() {
         (res) => {
           if (res.ok){
             res.json()
-            .then(data => console.log(data))
+            .then(data => {
+              handleUser(data.username)
+              history.push('/')
+            })
           }
         }
       )
@@ -74,7 +79,8 @@ function Signup() {
               <label htmlFor='username'>Username:</label>
               <input
                 type="text"
-                className={`form-control ${errors.username && 'is-invalid'}`}
+                // className={`form-control ${errors.username && 'is-invalid'}`}
+                className={`form-control`}
                 value={formik.values.username}
                 onChange={formik.handleChange}
                 name = 'username'
