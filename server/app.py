@@ -146,16 +146,19 @@ api.add_resource( EditById, '/edits/<int:id>')
 expects JSON of the format:
 {
     page_id: <int>,
-    user_id <int>,
+    user_id: <int>,
     new_text: <string>
 }
 """
-@app.route('/create_edit')
+@app.route('/create_edit', methods=['POST'])
 def add_edit_and_patch_page():
-    data = request.data()
-    page = Page.query.filter_by(id=id).first()
-    new_edit = page.create_edit(data['new_text'], data['user_id'])
-    page.text = data['new_text']
+    data = request.get_json()
+    new_text = data['new_text']
+    if new_text[-1] != '\n':
+        new_text += '\n'
+    page = Page.query.filter_by(id=data['page_id']).first()
+    new_edit = page.create_edit(new_text, data['user_id'])
+    page.text = new_text
     db.session.add(new_edit)
     db.session.commit()
     return make_response(new_edit.to_dict(), 201)
