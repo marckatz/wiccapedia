@@ -1,5 +1,6 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
+import difflib
 
 from config import db
 
@@ -49,6 +50,17 @@ class Page(db.Model, SerializerMixin):
 
     serialize_rules = ('-edits.page',)
 
+    def create_edit(self, new_text, user_id):
+        old_text_list = self.text.splitlines(keepends=True)
+        new_text_list = new_text.splitlines(keepends=True)
+        diff = difflib.unified_diff(old_text_list, new_text_list)
+        diff_string = ''.join(l for l in diff)
+        new_edit = Edit(
+            page_id = self.id,
+            user_id = user_id,
+            diff = diff_string
+        )
+        return new_edit
+
     def __repr__(self):
         return f'<Page {self.id} {self.title}>'
-

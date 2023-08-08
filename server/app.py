@@ -86,6 +86,7 @@ class PagesById(Resource):
         except:
             return make_response({'error':"Page not found"}, 404)
 
+    #also send user_id
     def patch(self, id):
         try:
             page = Page.query.filter_by(id=id).first()
@@ -114,10 +115,14 @@ class Edits(Resource):
     def get(self):
         return make_response([edit.to_dict() for edit in Edit.query.all()])
 
+
     def post(self):
         data = request.json
         try:
-            edit = Edit(user_id=data["user_id"], page_id=data["page_id"])
+            edit = Edit(
+                user_id=data["user_id"], 
+                page_id=data["page_id"]
+            )
             db.session.add(edit)
             db.session.commit()
             return make_response(edit.to_dict(), 201)
@@ -135,6 +140,25 @@ class EditById(Resource):
             return make_response({ 'error': 'can not find that edit' }, 404 )
 
 api.add_resource( EditById, '/edits/<int:id>')
+
+
+"""
+expects JSON of the format:
+{
+    page_id: <int>,
+    user_id <int>,
+    new_text: <string>
+}
+"""
+@app.route('/create_edit')
+def add_edit_and_patch_page():
+    data = request.data()
+    page = Page.query.filter_by(id=id).first()
+    new_edit = page.create_edit(data['new_text'], data['user_id'])
+    page.text = data['new_text']
+    db.session.add(new_edit)
+    db.session.commit()
+    return make_response(new_edit.to_dict(), 201)
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
