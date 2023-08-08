@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Search from './Search';
 
-function Navbar() {
+function Navbar({username, handleUser}) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  // simple log out right now where handleUser is called to set user to '', if username exists in state, then logged in state shows
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white">
       <div className="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
@@ -21,8 +21,8 @@ function Navbar() {
 
         {/* Login/Logout */}
         <div>
-          {isLoggedIn ? (
-            <button className="btn btn-outline-danger ml-2" onClick={() => setIsLoggedIn(false)}>Logout</button>
+          {username ? (
+            <button className="btn btn-outline-danger ml-2" onClick={() => handleUser('')}>Logout</button>
           ) : (
             <>
               <a className="btn btn-outline-danger ml-2" href="/login">Login</a>

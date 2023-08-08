@@ -12,7 +12,7 @@ function SearchResults(){
             // if(pages.length === 1){jump to page}
             setResults(pages)
         })
-    },[]);
+    },[query]);
 
     const result_list = results.map(page => {
         return <Link to={`/page/${page.id}`} key={page.id}><h2>{page.title}</h2></Link>
