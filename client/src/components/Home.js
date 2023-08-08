@@ -1,11 +1,48 @@
-import React from 'react';
-import HomePage from './HomePage';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 function Home() {
+  const title = "Welcome to Wiccapedia"
+  const text = "This is a platform for all things Wiccan."
+  const [pages, setPages] = useState([]) 
+  const [userStats, setUserStats] = useState([]) 
+  const [pageStats, setPageStats] = useState([]) 
+
+  useEffect(() => {
+    fetch('/pages')
+    .then(r=>r.json())
+    .then(p => setPages(p))
+
+    fetch('/get_user_stats')
+    .then(r=>r.json())
+    .then(u => setUserStats(u))
+
+    fetch('/get_page_stats')
+    .then(r=>r.json())
+    .then(p => setPageStats(p))
+  
+  
+  },[])
+
+  const quickRender1 = userStats.map(user => <p>{user.username} : {user.num_of_edits}</p>)
+  const quickRender2 = pageStats.map(page => <p>{page.title} : {page.num_of_edits}</p>)
   return (
     <div className="home-container">
-      <HomePage title="Welcome to Wiccapedia"
-        text="This is a platform for all things Wiccan." />
+      <div className="container mt-5">
+        <div className="d-flex justify-content-between align-items-start">
+          <h1>{title}</h1>
+          <div>
+            <Link to={`/page/${Math.floor(Math.random() * pages.length) + 1}`}>
+              <button className="btn btn-outline-primary btn-sm mr-2">Random Article</button>
+            </Link>
+          </div>
+        </div>
+        <hr />
+        <p className="mt-4">{text}</p>
+        {quickRender1}
+        {quickRender2}
+      </div>
     </div>
   );
 }
