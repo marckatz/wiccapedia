@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Page({ title, text }) {  
+function HomePage({ title, text }) {  
 
   return (
     <div className="container mt-5">
@@ -17,4 +17,4 @@ function Page({ title, text }) {
   );
 }
 
-export default Page;
+export default HomePage;
