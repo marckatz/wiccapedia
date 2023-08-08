@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useParams} from 'react-router-dom'
+import {useParams, Link} from 'react-router-dom'
 
 function Page() {
   const {pageId} = useParams();
@@ -13,7 +13,7 @@ function Page() {
       setTitle(page.title)
       setText(page.text)
     })
-  })
+  },[])
 
 
   return (
@@ -22,7 +22,9 @@ function Page() {
         <h1>{title}</h1>
         <div>
           <button className="btn btn-outline-primary btn-sm mr-2">Edit</button>
-          <button className="btn btn-outline-secondary btn-sm">View History</button>
+          <Link to={`/history/${pageId}`}>
+            <button className="btn btn-outline-secondary btn-sm">View History</button>
+          </Link>
         </div>
       </div>
       <hr />
