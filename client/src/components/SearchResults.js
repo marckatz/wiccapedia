@@ -23,6 +23,7 @@ function SearchResults(){
             <div className="d-flex justify-content-between align-items-start">
                 <h1>Search Results for: "{query}":</h1>
             </div>
+            <hr />
             {result_list}
         </div>
     )

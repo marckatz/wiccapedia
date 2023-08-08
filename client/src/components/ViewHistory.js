@@ -25,6 +25,7 @@ function ViewHistory() {
             <div className="d-flex justify-content-between align-items-start">
                 <h1>{title}</h1>
             </div>
+            <hr />
             <div>
                 {editList}
             </div>
