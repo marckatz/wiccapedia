@@ -7,7 +7,7 @@ function Page() {
   const [text, setText] = useState('')
 
   useEffect(() => {
-    fetch(`http://localhost:5555/pages/${pageId}`)
+    fetch(`/pages/${pageId}`)
     .then(r=>r.json())
     .then(page => {
       setTitle(page.title)
