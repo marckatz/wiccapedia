@@ -36,5 +36,6 @@ CORS(app)
 # Setup bcrypt
 bcrypt = Bcrypt(app)
 
-# Set secret key
+#Set secret key
 app.secret_key = b'N\xd5d-\x84\xd3 n(X\x98\x1bL\xcd\x10b'
+
