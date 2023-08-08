@@ -15,7 +15,7 @@ function SearchResults(){
     },[query]);
 
     const result_list = results.map(page => {
-        return <Link to={`/page/${page.id}`} key={page.id}><h2>{page.title}</h2></Link>
+        return <Link to={`/page/${page.title}`} key={page.id}><h2>{page.title}</h2></Link>
     })
 
     return (
