@@ -71,7 +71,8 @@ class Pages(Resource):
             data = request.get_json()
             new_page = Page(
                 title = data['title'],
-                text = data['text']
+                text = data['text'],
+                author = data['username']
             )
             db.session.add(new_page)
             db.session.commit()

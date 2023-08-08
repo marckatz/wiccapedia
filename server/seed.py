@@ -23,26 +23,42 @@ if __name__ == "__main__":
         yu = User(username="yu1234", password_hash="abcdef")
         tj = User(username="tj1234", password_hash="qweasd")
 
-        page1 = Page(title="title1", text="<h1>Header</h1>\n<p>paragraph</p>\n")
+        print("Adding users")
+        page1 = Page(title="title1", text=\
+"""<h1>header</h1>
+<p>This is line 1</p>
+<p>This is line 2</p>
+<p>This is line 3</p>
+<p>This is line 4</p>
+""")
         page2 = Page(title="title2", text="text2\n")
         page3 = Page(title="title3", text="text3\n")
-
-        # edit1 = Edit(user_id=1, page_id=1, diff='diff1')
-        # edit2 = Edit(user_id=2, page_id=2, diff='diff2')
-        # edit3 = Edit(user_id=3, page_id=3, diff='diff3')
-        # edit4 = Edit(user_id=1, page_id=3, diff='diff4')
+        print("Adding pages")
 
         db.session.add_all(
             [marc, yu, tj, page1, page2, page3]
-        )  # ,edit1,edit2,edit3,edit4])
+        )
         db.session.commit()
 
-        # add rng edits
-        edit_list = []
-        for i in range(20):
-            edit = Edit(user_id = ri(1,3), page_id = ri(1,3), diff = '')
-            edit_list.append(edit)
-        db.session.add_all(edit_list)
+
+        edit_text1 = """<h1>header</h1>
+<p>This is a new line</p>
+<p>This is line 1</p>
+<p>This is line 2 modified</p>
+<p>This is line 3</p>
+"""
+        edit_text2 = """<h1>header</h1>
+<p>This is not a new line anymore</p>
+<p>This is line 1</p>
+<p>This is line 2 modified again</p>
+<p>This is line 3</p>
+"""
+        edit1 = page1.create_edit(edit_text1, 1)
+        page1.text = edit_text1
+        edit2 = page1.create_edit(edit_text2, 1)
+        page1.text = edit_text2
+        db.session.add_all([edit1, edit2])
         db.session.commit()
-            
+        print("Adding edits")
+
         print("Finished Seeding")

@@ -7,7 +7,7 @@ import Signup from './Signup';
 import UserProfile from './UserProfile';
 // import EditPage from './EditPage';
 import ViewHistory from './ViewHistory';
-// import PostPage from './PostPage';
+import PostPage from './PostPage';
 import Page from './Page';
 import SearchResults from './SearchResults';
 import EditPage from './EditPage';
@@ -48,8 +48,9 @@ function App() {
           <Route path="/edit/:pageId" component={()=><EditPage user={user} />} />
           <Route path="/search/:query" component={SearchResults} />
           {user && <Route path="/profile" component={()=><UserProfile userId={user.id} />} />}
-          {/* <Route path="/edit/:pageId" component={EditPage} />
-          <Route path="/post" component={PostPage} /> */}
+          {user && <Route path="/post" component={()=><PostPage username={user.username} />} />}
+          {/* <Route path="/edit/:pageId" component={EditPage} /> */}
+          
         </Switch>
       </div>
     </Router>

@@ -70,6 +70,7 @@ class Page(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
     text = db.Column(db.String)
+    author = db.Column(db.String)
 
     edits = db.relationship('Edit', back_populates='page', cascade='all,delete-orphan')
     users = association_proxy('edits', 'user')
