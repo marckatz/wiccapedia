@@ -22,7 +22,7 @@ function Navbar({ user, handleLogout }) {
           {user ? (
             <>
               <a className="btn btn-outline-success ml-2" href="/post">PostPage</a>
-              <a className="btn btn-outline-info ml-2" href={`/profile/${user?.id}`}>Profile</a>
+              <a className="btn btn-outline-info ml-2" href={`/profile`}>Profile</a>
               <button className="btn btn-outline-danger ml-2" onClick={handleLogout}>Logout</button>
             </>
           ) : (
