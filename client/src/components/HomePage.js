@@ -16,7 +16,7 @@ function HomePage({ title, text }) {
         <h1>{title}</h1>
         <div>
           <Link to={`/page/${Math.floor(Math.random() * pages.length) + 1}`}>
-            <button className="btn btn-outline-primary btn-sm mr-2">Random Article</button>
+            <button className="btn btn-outline-primary btn-sm me-2">Random Article</button>
           </Link>
         </div>
       </div>

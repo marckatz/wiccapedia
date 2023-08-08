@@ -9,18 +9,22 @@ function Search(props) {
   }
 
   return (
-    <form className="form-inline my-2 my-lg-0" onSubmit={handleSearch}>
-      <input 
-        className="form-control mr-sm-2" 
-        type="search" 
-        value={query} 
-        onChange={e => setQuery(e.target.value)} 
-        placeholder="Search" 
-        aria-label="Search" 
-      />
-      <Link to={`/search/${query}`}>
-        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </Link>
+    <form className="row row-cols-lg-auto g-3 align-items-center" onSubmit={handleSearch}>
+      <div className='col-12'>
+        <input
+          className="form-control me-sm-2"
+          type="search"
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          placeholder="Search"
+          aria-label="Search"
+        />
+      </div>
+      <div className='col-12'>
+        <Link to={`/search/${query}`}>
+          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </Link>
+      </div>
     </form>
   );
 }

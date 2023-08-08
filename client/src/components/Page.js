@@ -22,7 +22,7 @@ function Page() {
         <h1>{title}</h1>
         <div>
           <Link to={`/edit/${pageId}`}>
-            <button className="btn btn-outline-primary btn-sm mr-2">Edit</button>
+            <button className="btn btn-outline-primary btn-sm me-2">Edit</button>
           </Link>
           <Link to={`/history/${pageId}`}>
             <button className="btn btn-outline-secondary btn-sm">View History</button>
