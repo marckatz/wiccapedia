@@ -34,7 +34,7 @@ function ViewHistory() {
                 </div>
             </div>
             <hr />
-            <div>
+            <div className="mx-5">
                 {editList}
             </div>
         </div>

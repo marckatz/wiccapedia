@@ -14,8 +14,8 @@ function Search(props) {
   }
 
   return (
-    <form className="row row-cols-lg-auto g-3 align-items-center" onSubmit={handleSearch}>
-      <div className='col-12'>
+    <form className="row row-cols-lg-auto align-items-center g-2" onSubmit={handleSearch}>
+      <div className='col'>
         <input
           className="form-control me-sm-2"
           type="search"
@@ -25,7 +25,7 @@ function Search(props) {
           aria-label="Search"
         />
       </div>
-      <div className='col-12'>
+      <div className='col'>
         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </div>
     </form>
