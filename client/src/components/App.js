@@ -9,6 +9,7 @@ import Signup from './Signup';
 import ViewHistory from './ViewHistory';
 // import PostPage from './PostPage';
 import Page from './Page';
+import SearchResults from './SearchResults';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/signup" component={Signup} />
           <Route path="/page/:pageId" component={Page} />
           <Route path="/history/:pageId" component={ViewHistory} />
+          <Route path="/search/:query" component={SearchResults} />
           {/* <Route path="/profile" component={UserProfile} />
           <Route path="/edit/:pageId" component={EditPage} />
           <Route path="/post" component={PostPage} /> */}

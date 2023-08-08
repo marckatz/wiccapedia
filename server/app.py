@@ -163,5 +163,13 @@ def add_edit_and_patch_page():
     db.session.commit()
     return make_response(new_edit.to_dict(), 201)
 
+@app.route('/search_by_title/<string:search>')
+def search_by_title(search):
+    pages = Page.query.filter(Page.title.like(f'%{search}%')).all()
+    if not pages:
+        return make_response({'error':f'No pages found matching "{search}"'}, 404)
+    page_dicts = [p.to_dict(only=('title','id')) for p in pages]
+    return make_response(page_dicts, 200)
+
 if __name__ == "__main__":
     app.run(port=5555, debug=True)

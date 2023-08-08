@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Search(props) {
   const [query, setQuery] = useState('');
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    // bulabula
-  };
+  const handleSearch = (e) => {
+    e.preventDefault()
+  }
 
   return (
     <form className="form-inline my-2 my-lg-0" onSubmit={handleSearch}>
@@ -18,7 +18,9 @@ function Search(props) {
         placeholder="Search" 
         aria-label="Search" 
       />
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <Link to={`/search/${query}`}>
+        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </Link>
     </form>
   );
 }
