@@ -49,8 +49,8 @@ function Login({handleUser}) {
           <h2 className="text-center">Login</h2>
           {error && <div className="alert alert-danger">{error}</div>}
           <form onSubmit={(e) => e.preventDefault()}>
-            <div className="form-group">
-              <label>Username:</label>
+            <div className="row-mb-1">
+              <label className='form-label'>Username:</label>
               <input
                 type="text"
                 className="form-control"
@@ -59,8 +59,9 @@ function Login({handleUser}) {
                 required
               />
             </div>
-            <div className="form-group">
-              <label>Password:</label>
+            <p></p>
+            <div className="row-mb-1">
+              <label className='form-label'>Password:</label>
               <input
                 type="password"
                 className="form-control"
@@ -69,6 +70,7 @@ function Login({handleUser}) {
                 required
               />
             </div>
+            <p></p>
             <div className="text-center">
               <button className="btn btn-danger" onClick={handleLogin}>
                 Login

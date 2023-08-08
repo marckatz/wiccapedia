@@ -80,8 +80,8 @@ function Signup({handleUser}) {
         <div className="col-md-4">
           <h2 className="text-center">Signup</h2>
           <form onSubmit={formik.handleSubmit}>
-            <div className="form-group">
-              <label htmlFor='username'>Username:</label>
+            <div className="row-mb-1">
+              <label htmlFor='username' className='form-label'>Username:</label>
               <input
                 type="text"
                 // className={`form-control ${errors.username && 'is-invalid'}`}
@@ -95,8 +95,8 @@ function Signup({handleUser}) {
               {/* {errors.username && <div className="invalid-feedback">{errors.username}</div>} */}
               <p style={{color : "red"}}> {formik.errors.username}</p>
             </div>
-            <div className="form-group">
-              <label>Password:</label>
+            <div className="row-mb-1">
+              <label className='form-label'>Password:</label>
               <input
                 type="password"
                 className={`form-control`}
