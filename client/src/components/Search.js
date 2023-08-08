@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Search(props) {
   const [query, setQuery] = useState('');
+  const history = useHistory()
 
   const handleSearch = (e) => {
     e.preventDefault()
+    if(query){
+      history.push(`/search/${query}`)
+    }
   }
 
   return (
@@ -21,9 +26,7 @@ function Search(props) {
         />
       </div>
       <div className='col-12'>
-        <Link to={`/search/${query}`}>
-          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </Link>
+        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </div>
     </form>
   );
