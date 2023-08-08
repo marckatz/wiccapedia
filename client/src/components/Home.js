@@ -1,10 +1,10 @@
 import React from 'react';
-import Page from './Page';
+import HomePage from './HomePage';
 
 function Home() {
   return (
     <div className="home-container">
-      <Page title="Welcome to Wiccapedia"
+      <HomePage title="Welcome to Wiccapedia"
         text="This is a platform for all things Wiccan." />
     </div>
   );
