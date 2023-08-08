@@ -171,5 +171,13 @@ def search_by_title(search):
     page_dicts = [p.to_dict(only=('title','id')) for p in pages]
     return make_response(page_dicts, 200)
 
+@app.route('/pages/<string:title>')
+def page_by_title(title):
+    page = Page.query.filter_by(title=title).first()
+    if page:
+        return make_response(page.to_dict(), 200)
+    else:
+        return make_response({'error':f'page "{title}" not found'}, 404)
+
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
