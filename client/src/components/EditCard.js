@@ -28,15 +28,30 @@ function EditCard({edit}){
                 right.push(line)
             }
         });
-        return [left.join('\n'), right.join('\n')]
+        // return [left.join('\n'), right.join('\n')]
+        const rows = left.map((leftLine, index) => {
+            let rightLine = right[index]
+            return intoColumns(leftLine, rightLine, index)
+        })
+        return rows
+    }
+
+    function intoColumns(left, right, index){
+        return (
+            <div className="row font-monospace border border-secondary rounded align-items-center " style={{height:'2rem'}} key={index}>
+                <div className="col">{left}</div>
+                <div className="col">{right}</div>
+            </div>
+        )
     }
 
     return (
-        <div style={{overflow:"auto"}}>
+        <div className="container" style={{overflow:"auto"}}>
             <h3>Edited by {username}</h3>
             {/* <p style={{whiteSpace:'pre-wrap'}}>{diff}</p> */}
-            <p className="font-monospace" style={{whiteSpace:'pre-wrap', float:'left'}}>{readableDiff(diff)[0]}</p>
-            <p className="font-monospace" style={{whiteSpace:'pre-wrap', float:'right'}}>{readableDiff(diff)[1]}</p>
+            {/* <p className="font-monospace" style={{whiteSpace:'pre-wrap', float:'left'}}>{readableDiff(diff)[0]}</p>
+            <p className="font-monospace" style={{whiteSpace:'pre-wrap', float:'right'}}>{readableDiff(diff)[1]}</p> */}
+            {readableDiff(diff)}
         </div>
     )
 }
