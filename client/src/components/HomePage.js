@@ -5,7 +5,7 @@ function HomePage({ title, text }) {
   const [pages, setPages] = useState([]) 
 
   useEffect(() => {
-    fetch('http://localhost:5555/pages')
+    fetch('/pages')
     .then(r=>r.json())
     .then(p => setPages(p))
   },[])
