@@ -28,7 +28,7 @@ function Page() {
         </div>
       </div>
       <hr />
-      <p className="mt-4">{text}</p>
+      <p className="mt-4" style={{whiteSpace:"pre-wrap"}}>{text}</p>
     </div>
   );
 }
