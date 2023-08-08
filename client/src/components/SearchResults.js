@@ -19,7 +19,10 @@ function SearchResults(){
     })
 
     return (
-        <div>
+        <div className="container mt-5">
+            <div className="d-flex justify-content-between align-items-start">
+                <h1>Search Results for: "{query}":</h1>
+            </div>
             {result_list}
         </div>
     )
