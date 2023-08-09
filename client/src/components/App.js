@@ -45,9 +45,9 @@ function App() {
           <Route path="/signup" component={()=><Signup handleUser={handleUser} />} />
           <Route path="/page/:pageId" component={Page} />
           <Route path="/history/:pageId" component={ViewHistory} />
-          <Route path="/edit/:pageId" component={()=><EditPage userId={user?.id} />} />
+          <Route path="/edit/:pageId" component={()=><EditPage userId={user.id} />} />
           <Route path="/search/:query" component={SearchResults} />
-          {user && <Route path="/profile" component={()=><UserProfile userId={user?.id} />} />}
+          {user && <Route path="/profile" component={()=><UserProfile userId={user.id} />} />}
           {/* <Route path="/edit/:pageId" component={EditPage} />
           <Route path="/post" component={PostPage} /> */}
         </Switch>

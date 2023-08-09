@@ -7,6 +7,7 @@ function UserProfile({ userId }) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [showChangePasswordForm, setShowChangePasswordForm] = useState(false);
 
   useEffect(() => {
     fetch(`/users/${userId}`)
@@ -16,13 +17,16 @@ function UserProfile({ userId }) {
   }, [userId]);
 
   const handlePasswordChange = async () => {
+    setSuccess('');
+    setError('');
+
     if (newPassword !== confirmPassword) {
       setError("New password and confirm password do not match.");
       return;
     }
 
     try {
-      const response = await fetch('/change-password', {
+      const response = await fetch('/change_password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -48,6 +52,13 @@ function UserProfile({ userId }) {
     }
   };
 
+  const handleCancelChange = () => {
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+    setShowChangePasswordForm(false);
+  };
+
   return (
     <div className="container mt-5">
       <h1>My Profile</h1>
@@ -59,40 +70,58 @@ function UserProfile({ userId }) {
         <h4>Change Password</h4>
         {error && <div className="alert alert-danger">{error}</div>}
         {success && <div className="alert alert-success">{success}</div>}
-        <div className="form-group">
-          <label>Current Password:</label>
-          <input
-            type="password"
-            className="form-control"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label>New Password:</label>
-          <input
-            type="password"
-            className="form-control"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label>Confirm New Password:</label>
-          <input
-            type="password"
-            className="form-control"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </div>
-        <button 
-          className="btn btn-danger" 
-          onClick={handlePasswordChange}
-          disabled={!currentPassword || !newPassword || !confirmPassword}
-        >
-          Change Password
-        </button>
+
+        {showChangePasswordForm ? (
+          <>
+            <div className="form-group">
+              <label>Current Password:</label>
+              <input
+                type="password"
+                className="form-control"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>New Password:</label>
+              <input
+                type="password"
+                className="form-control"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Confirm New Password:</label>
+              <input
+                type="password"
+                className="form-control"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+            <button 
+              className="btn btn-danger" 
+              onClick={handlePasswordChange}
+              disabled={!currentPassword || !newPassword || !confirmPassword}
+            >
+              Change Password
+            </button>
+            <button 
+              className="btn btn-secondary ml-3" 
+              onClick={handleCancelChange} 
+            >
+              Cancel Change
+            </button>
+          </>
+        ) : (
+          <button 
+            className="btn btn-outline-primary" 
+            onClick={() => setShowChangePasswordForm(true)}
+          >
+            Change Password
+          </button>
+        )}
       </div>
     </div>
   );
