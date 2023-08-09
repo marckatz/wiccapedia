@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './Navbar'; 
 import Home from './Home';
@@ -16,12 +16,29 @@ function App() {
 
   const handleUser = (user) => setUsername(user);
 
+  const handleLogout = () => {
+    fetch('/logout', {
+      method : "DELETE",
+    }).then(() => {
+      // do stuff to frontend upon logging out
+      setUsername('')
+    })
+  }
   console.log(username)
+
+  useEffect(()=>{
+    fetch('/check_session').then((res) => {
+      if (res.ok) {
+        res.json().then((user) => setUsername(user))
+      }
+    })
+
+  }, [])
 
   return (
     <Router>
       <div className="App">
-        <Navbar username = {username} handleUser = {handleUser}/>
+        <Navbar username = {username} handleLogout = {handleLogout}/>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
