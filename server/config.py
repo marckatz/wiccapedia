@@ -29,9 +29,13 @@ db.init_app(app)
 api = Api(app)
 
 # Instantiate CORS
+
+# if have CORS issue, try add this:resources={r"/*": {"origins": "http://localhost:3000"}}
 CORS(app)
 
 # Setup bcrypt
 bcrypt = Bcrypt(app)
 
+#Set secret key
 app.secret_key = b'N\xd5d-\x84\xd3 n(X\x98\x1bL\xcd\x10b'
+

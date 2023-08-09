@@ -5,8 +5,37 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // bulabula
+  // Store any error message
+  const [error, setError] = useState(''); 
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://localhost:5555/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: username, password: password }),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 200) {
+        console.log("Successfully logged in!", data);
+        // Redirect or set some global user state here
+        // For example, you might want to navigate to a dashboard or home page
+      } else if (response.status === 401) {
+        setError("Incorrect password. Please try again.");
+      } else if (response.status === 404) {
+        setError("User not found. Please try again.");
+      } else {
+        setError(data.error || "Failed to login. Please try again.");
+      }
+
+    } catch (error) {
+      console.error("There was an error logging in", error);
+      setError("An unexpected error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -14,6 +43,7 @@ function Login() {
       <div className="row justify-content-center">
         <div className="col-md-4">
           <h2 className="text-center">Login</h2>
+          {error && <div className="alert alert-danger">{error}</div>}
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="form-group">
               <label>Username:</label>
@@ -46,5 +76,4 @@ function Login() {
     </div>
   );
 }
-
 export default Login;
