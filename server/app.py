@@ -216,7 +216,7 @@ def check_session ():
     else:
         return {'message': '401: Not Authorized'}, 401    
 
-@app.route('/get_user_info')
+@app.route('/get_user_stats')
 def get_user_info():
     user_stats = db.session.query(User, db.func.count(Edit.id).label('edit_count')).join(Edit).group_by(Edit.user_id).order_by(db.desc('edit_count')).limit(3).all()
     dict_list = []
@@ -227,7 +227,7 @@ def get_user_info():
     
     return make_response(dict_list)
 
-@app.route('/get_page_info')
+@app.route('/get_page_stats')
 def get_page_info():
     page_stats = db.session.query(Page, db.func.count(Edit.id).label('edit_count')).join(Edit).group_by(Edit.page_id).order_by(db.desc('edit_count')).limit(3).all()
     dict_list = []
