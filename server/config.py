@@ -30,8 +30,7 @@ api = Api(app)
 
 # Instantiate CORS
 
-# if have CORS issue, try add this:resources={r"/*": {"origins": "http://localhost:3000"}}, supports_credentials=True
-
+# if have CORS issue, try add this:resources={r"/*": {"origins": "http://localhost:3000"}}
 CORS(app)
 
 # Setup bcrypt
