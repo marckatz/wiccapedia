@@ -23,9 +23,11 @@ if __name__ == "__main__":
         yu = User(username="yu1234", password_hash="abcdef")
         tj = User(username="tj1234", password_hash="qweasd")
 
-        page1 = Page(title="title1", text="<h1>Header</h1>\n<p>paragraph</p>\n")
-        page2 = Page(title="title2", text="text2\n")
-        page3 = Page(title="title3", text="text3\n")
+        page1 = Page(
+            title="title1", text="<h1>Header</h1>\n<p>paragraph</p>\n", author="marc123"
+        )
+        page2 = Page(title="title2", text="text2\n", author="yu1234")
+        page3 = Page(title="title3", text="text3\n", author="tj1234")
 
         # edit1 = Edit(user_id=1, page_id=1, diff='diff1')
         # edit2 = Edit(user_id=2, page_id=2, diff='diff2')
@@ -40,9 +42,9 @@ if __name__ == "__main__":
         # add rng edits
         edit_list = []
         for i in range(20):
-            edit = Edit(user_id = ri(1,3), page_id = ri(1,3), diff = '')
+            edit = Edit(user_id=ri(1, 3), page_id=ri(1, 3), diff="")
             edit_list.append(edit)
         db.session.add_all(edit_list)
         db.session.commit()
-            
+
         print("Finished Seeding")

@@ -5,6 +5,7 @@ function Page() {
   const {pageId} = useParams();
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
+  const [author, setAuthor] = useState('')
 
   useEffect(() => {
     fetch(`/pages/${pageId}`)
@@ -12,6 +13,7 @@ function Page() {
     .then(page => {
       setTitle(page.title)
       setText(page.text)
+      setAuthor(page.author)
     })
   },[])
 
@@ -30,6 +32,7 @@ function Page() {
         </div>
       </div>
       <hr />
+      <h4>By: {author}</h4>
       <div className="mt-4" style={{whiteSpace:"pre-wrap"}} dangerouslySetInnerHTML={{__html:text}}></div>
     </div>
   );
