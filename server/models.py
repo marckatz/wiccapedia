@@ -35,6 +35,13 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, some_string):
         return bcrypt.check_password_hash(self.password_hash, some_string.encode('utf-8'))
 
+    @property
+    def most_edited_page(self):
+        # returns most edits for a single page by user
+        page_tup = db.session.query(Page, db.func.count(Edit.id).label('count')).join(Edit).filter(Edit.user_id == self.id).group_by(Edit.page_id).order_by(db.desc('count')).first()
+        return f'{page_tup[0]} with {page_tup[1]} edits'
+        
+
     def __repr__(self):
         return f'<User {self.id} {self.username}>'
 
