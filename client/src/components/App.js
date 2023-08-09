@@ -41,7 +41,7 @@ function App() {
         <Navbar username = {username} handleLogout = {handleLogout}/>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
+          <Route path="/login" component={()=><Login handleUser={handleUser} />} />
           <Route path="/signup" component={()=><Signup handleUser={handleUser} />} />
           <Route path="/page/:pageId" component={Page} />
           <Route path="/history/:pageId" component={ViewHistory} />
