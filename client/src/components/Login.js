@@ -25,8 +25,6 @@ function Login({handleUser}) {
 
       if (response.status === 200) {
         console.log("Successfully logged in!", data);
-        // Redirect or set some global user state here
-        // For example, you might want to navigate to a dashboard or home page
         history.push('/')
         handleUser(data.username)
 
