@@ -5,28 +5,28 @@ import { Link } from 'react-router-dom';
 function Home() {
   const title = "Welcome to Wiccapedia"
   const text = "This is a platform for all things Wiccan."
-  const [pages, setPages] = useState([]) 
-  const [userStats, setUserStats] = useState([]) 
-  const [pageStats, setPageStats] = useState([]) 
+  const [pages, setPages] = useState([])
+  const [userStats, setUserStats] = useState([])
+  const [pageStats, setPageStats] = useState([])
 
   useEffect(() => {
     fetch('/pages')
-    .then(r=>r.json())
-    .then(p => setPages(p))
+      .then(r => r.json())
+      .then(p => setPages(p))
 
     fetch('/get_user_stats')
-    .then(r=>r.json())
-    .then(u => setUserStats(u))
+      .then(r => r.json())
+      .then(u => setUserStats(u))
 
     fetch('/get_page_stats')
-    .then(r=>r.json())
-    .then(p => setPageStats(p))
-  
-  
-  },[])
+      .then(r => r.json())
+      .then(p => setPageStats(p))
 
-  const quickRender1 = userStats.map(user => <p>{user.username} : {user.num_of_edits}</p>)
-  const quickRender2 = pageStats.map(page => <p>{page.title} : {page.num_of_edits}</p>)
+
+  }, [])
+
+  const quickRender1 = userStats.map(user => <li>{user.username} : {user.num_of_edits}</li>)
+  const quickRender2 = pageStats.map(page => <li>{page.title} : {page.num_of_edits}</li>)
   return (
     <div className="home-container">
       <div className="container mt-5">
@@ -40,8 +40,10 @@ function Home() {
         </div>
         <hr />
         <p className="mt-4">{text}</p>
-        {quickRender1}
-        {quickRender2}
+        <ul>
+          {quickRender1}
+          {quickRender2}
+        </ul>
       </div>
     </div>
   );
