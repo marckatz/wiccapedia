@@ -22,7 +22,7 @@ function UserProfile({ userId }) {
     }
 
     try {
-      const response = await fetch('/change-password', {
+      const response = await fetch('/change_password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
