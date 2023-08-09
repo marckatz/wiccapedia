@@ -26,7 +26,7 @@ function Login({handleUser}) {
       if (response.status === 200) {
         console.log("Successfully logged in!", data);
         history.push('/')
-        handleUser(data.username)
+        handleUser(data)
 
       } else if (response.status === 401) {
         setError("Incorrect password. Please try again.");
