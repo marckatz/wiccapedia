@@ -1,21 +1,24 @@
 // Login.js
 import React, { useState } from 'react';
+import {useHistory} from 'react-router-dom';
 
-function Login() {
+function Login({handleUser}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   // Store any error message
   const [error, setError] = useState(''); 
+  const history = useHistory()
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:5555/login', {
+      const response = await fetch('/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username: username, password: password }),
+        // credentials : 'include',
       });
 
       const data = await response.json();
@@ -24,6 +27,9 @@ function Login() {
         console.log("Successfully logged in!", data);
         // Redirect or set some global user state here
         // For example, you might want to navigate to a dashboard or home page
+        history.push('/')
+        handleUser(data.username)
+
       } else if (response.status === 401) {
         setError("Incorrect password. Please try again.");
       } else if (response.status === 404) {

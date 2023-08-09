@@ -28,7 +28,7 @@ function Page() {
         </div>
       </div>
       <hr />
-      <p className="mt-4" style={{whiteSpace:"pre-wrap"}}>{text}</p>
+      <div className="mt-4" style={{whiteSpace:"pre-wrap"}} dangerouslySetInnerHTML={{__html:text}}></div>
     </div>
   );
 }

@@ -50,7 +50,7 @@ function Signup({handleUser}) {
     },
     validationSchema: formSchema,
     onSubmit: (values) => {
-      fetch('users', {
+      fetch('/users', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

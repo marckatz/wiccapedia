@@ -23,7 +23,7 @@ if __name__ == "__main__":
         yu = User(username="yu1234", password_hash="abcdef")
         tj = User(username="tj1234", password_hash="qweasd")
 
-        page1 = Page(title="title1", text="text1\n")
+        page1 = Page(title="title1", text="<h1>Header</h1>\n<p>paragraph</p>\n")
         page2 = Page(title="title2", text="text2\n")
         page3 = Page(title="title3", text="text3\n")
 
