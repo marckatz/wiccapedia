@@ -216,6 +216,32 @@ def check_session ():
     else:
         return {'message': '401: Not Authorized'}, 401    
 
+@app.route('/change_password', methods=['POST'])
+def change_password():
+    user_id = session.get('user_id')
+    if not user_id:
+        return make_response({'error': 'User not logged in'}, 401)
+
+    data = request.get_json()
+    current_password = data.get('currentPassword')
+    new_password = data.get('newPassword')
+
+    if not (current_password and new_password):
+        return make_response({'error': 'Old and new passwords are required'}, 400)
+
+    user = User.query.filter_by(id=user_id).first()
+
+    if not user:
+        return make_response({'error': 'User not found'}, 404)
+
+    if not user.authenticate(current_password):
+        return make_response({'error': 'Incorrect old password'}, 401)
+
+    user.password_hash = new_password
+    db.session.commit()
+
+    return make_response({'message': 'Password changed successfully'}, 200)
+
 @app.route('/get_user_stats')
 def get_user_info():
     user_stats = db.session.query(User, db.func.count(Edit.id).label('edit_count')).join(Edit).group_by(Edit.user_id).order_by(db.desc('edit_count')).limit(3).all()
