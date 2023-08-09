@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, make_response
+from flask import request, make_response, session
 from flask_restful import Resource
 
 # Local imports
@@ -26,9 +26,11 @@ class Users(Resource):
     def post(self):
         data = request.get_json()
         try:
-            new_user = User(username = data['username'])
-        except Exception:
-            return make_response({"message" : "we have an error"}, 404)
+            # Add password
+            new_user = User(name=data['username'], password_hash=data['password'])
+        except Exception as e:
+            return make_response({"message": "Error while creating user: " + str(e)}, 400)
+        
         db.session.add(new_user)
         db.session.commit()
 
@@ -120,14 +122,14 @@ class Edits(Resource):
         data = request.json
         try:
             edit = Edit(
-                user_id=data["user_id"], 
-                page_id=data["page_id"]
+                user_id=data['user_id'], 
+                page_id=data['page_id']
             )
             db.session.add(edit)
             db.session.commit()
             return make_response(edit.to_dict(), 201)
         except Exception as e:
-            return make_response({"errors": [str(e)]}, 422)
+            return make_response({'errors': [str(e)]}, 422)
         
 api.add_resource( Edits, '/edits' )
         
@@ -178,6 +180,33 @@ def page_by_title(title):
         return make_response(page.to_dict(), 200)
     else:
         return make_response({'error':f'page "{title}" not found'}, 404)
+    
+
+# Login
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data['username']
+    password = data['password']
+    
+    # Check if user exists
+    user = User.query.filter_by(username=username).first()
+    if not user:
+        return make_response({'error': 'User not found'}, 404)
+    
+    # Authenticate the user
+    if user.authenticate(password):
+        session['user_id'] = user.id
+        return make_response(user.to_dict(), 200)
+    else:
+        return make_response({'error': 'Incorrect password'}, 401)
+
+# Logout
+@app.route('/logout', methods=['POST'])
+def logout():
+    session.pop('user_id', None)
+    return make_response({'message': 'Logged out successfully'}, 200)
+
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
