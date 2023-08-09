@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Standard library imports
-from random import randint, choice as rc
+from random import randint as ri, choice as rc
 
 # Remote library imports
 from faker import Faker
@@ -36,4 +36,13 @@ if __name__ == "__main__":
             [marc, yu, tj, page1, page2, page3]
         )  # ,edit1,edit2,edit3,edit4])
         db.session.commit()
+
+        # add rng edits
+        edit_list = []
+        for i in range(20):
+            edit = Edit(user_id = ri(1,3), page_id = ri(1,3), diff = '')
+            edit_list.append(edit)
+        db.session.add_all(edit_list)
+        db.session.commit()
+            
         print("Finished Seeding")

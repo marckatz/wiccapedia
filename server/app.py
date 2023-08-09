@@ -216,5 +216,27 @@ def check_session ():
     else:
         return {'message': '401: Not Authorized'}, 401    
 
+@app.route('/get_user_stats')
+def get_user_info():
+    user_stats = db.session.query(User, db.func.count(Edit.id).label('edit_count')).join(Edit).group_by(Edit.user_id).order_by(db.desc('edit_count')).limit(3).all()
+    dict_list = []
+    for tuple in user_stats:
+        res_dict = tuple[0].to_dict(only = ('username', 'id'))
+        res_dict['num_of_edits'] = tuple[1]
+        dict_list.append(res_dict)
+    
+    return make_response(dict_list)
+
+@app.route('/get_page_stats')
+def get_page_info():
+    page_stats = db.session.query(Page, db.func.count(Edit.id).label('edit_count')).join(Edit).group_by(Edit.page_id).order_by(db.desc('edit_count')).limit(3).all()
+    dict_list = []
+    for tuple in page_stats:
+        res_dict = tuple[0].to_dict(only = ('title', 'id'))
+        res_dict['num_of_edits'] = tuple[1]
+        dict_list.append(res_dict)
+    
+    return make_response(dict_list)
+
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
