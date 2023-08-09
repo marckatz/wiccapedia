@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import StatCard from './StatCard';
 
 function Home() {
   const title = "Welcome to Wiccapedia"
@@ -25,8 +25,8 @@ function Home() {
 
   }, [])
 
-  const quickRender1 = userStats.map(user => <li>{user.username} : {user.num_of_edits}</li>)
-  const quickRender2 = pageStats.map(page => <li>{page.title} : {page.num_of_edits}</li>)
+  const quickRender1 = userStats.map(user => <StatCard key = {user.id} name = {user.username} stat={user.num_of_edits}/>)
+  const quickRender2 = pageStats.map(page => <StatCard key = {page.id} name = {page.title} stat= {page.num_of_edits}/>)
   return (
     <div className="home-container">
       <div className="container mt-5">
@@ -42,6 +42,8 @@ function Home() {
         <p className="mt-4">{text}</p>
         <ul>
           {quickRender1}
+        </ul>
+        <ul>
           {quickRender2}
         </ul>
       </div>
