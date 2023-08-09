@@ -40,12 +40,13 @@ function Signup({handleUser}) {
   const formSchema = yup.object().shape({
     // email: yup.string().email("Invalid email").required("Must enter email"),
     username: yup.string().required("Must enter a name").min(5).max(25),
-    // password: yup.string().required("Must enter a password").max(15),
+    password: yup.string().required("Must enter a password").min(6).max(15),
   });
 
   const formik = useFormik({
     initialValues: {
       username: "",
+      password: "",
     },
     validationSchema: formSchema,
     onSubmit: (values) => {
@@ -63,6 +64,10 @@ function Signup({handleUser}) {
               handleUser(data.username)
               history.push('/')
             })
+          }
+          else{
+            res.json()
+            .then(data => console.log(data))         
           }
         }
       )
@@ -92,16 +97,16 @@ function Signup({handleUser}) {
             </div>
             <div className="form-group">
               <label>Password:</label>
-              {/* <input
+              <input
                 type="password"
-                className={`form-control ${errors.password && 'is-invalid'}`}
+                className={`form-control`}
                 value={formik.values.password}
                 name = 'password'
                 id = 'password'
                 onChange={formik.handleChange}
                 required
               />
-              {errors.password && <div className="invalid-feedback">{errors.password}</div>} */}
+              <p style={{color : "red"}}> {formik.errors.password}</p>
             </div>
             <div className="text-center">
               <button className="btn btn-warning" type="submit">

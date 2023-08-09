@@ -27,12 +27,13 @@ class Users(Resource):
         data = request.get_json()
         try:
             # Add password
-            new_user = User(name=data['username'], password_hash=data['password'])
+            new_user = User(username=data['username'], password_hash=data['password'])
         except Exception as e:
             return make_response({"message": "Error while creating user: " + str(e)}, 400)
         
         db.session.add(new_user)
         db.session.commit()
+        session['user_id'] = new_user.id
 
         return make_response(new_user.to_dict(), 201)
 
@@ -202,11 +203,18 @@ def login():
         return make_response({'error': 'Incorrect password'}, 401)
 
 # Logout
-@app.route('/logout', methods=['POST'])
+@app.route('/logout', methods=['DELETE'])
 def logout():
     session.pop('user_id', None)
-    return make_response({'message': 'Logged out successfully'}, 200)
+    return make_response({'message': 'Logged out successfully'}, 204)
 
+@app.route('/check_session')
+def check_session ():
+    user = User.query.filter(User.id == session.get('user_id')).first()
+    if user:
+        return make_response (user.to_dict())
+    else:
+        return {'message': '401: Not Authorized'}, 401    
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
