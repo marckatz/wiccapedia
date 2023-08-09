@@ -21,7 +21,9 @@ function Page() {
       <div className="d-flex justify-content-between align-items-start">
         <h1>{title}</h1>
         <div>
-          <button className="btn btn-outline-primary btn-sm mr-2">Edit</button>
+          <Link to={`/edit/${pageId}`}>
+            <button className="btn btn-outline-primary btn-sm mr-2">Edit</button>
+          </Link>
           <Link to={`/history/${pageId}`}>
             <button className="btn btn-outline-secondary btn-sm">View History</button>
           </Link>

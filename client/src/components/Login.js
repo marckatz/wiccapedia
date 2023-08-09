@@ -25,7 +25,7 @@ function Login({handleUser}) {
 
       if (response.status === 200) {
         console.log("Successfully logged in!", data);
-        history.push('/')
+        history.goBack()
         handleUser(data)
 
       } else if (response.status === 401) {
