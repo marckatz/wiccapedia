@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Search from './Search';
 
-function Navbar({username, handleLogout}) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // simple log out right now where handleUser is called to set user to '', if username exists in state, then logged in state shows
+function Navbar({ user, handleLogout }) { 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white">
       <div className="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
         {/* Logo and Home link */}
         <div className="d-flex align-items-center">
-          <a href="/">
+          <Link to="/">
             <img src="https://img.freepik.com/premium-vector/triple-moon-pentagram_257845-4104.jpg?w=1380"
               alt="Wiccapedia Logo" style={{ width: '40px', marginRight: '10px' }} />
-          </a>
-          <a className="navbar-brand" href="/">Wiccapedia</a>
+          </Link>
+          <Link className="navbar-brand" to="/">Wiccapedia</Link>
         </div>
 
         {/* Search bar */}
@@ -21,8 +19,12 @@ function Navbar({username, handleLogout}) {
 
         {/* Login/Logout */}
         <div>
-          {username ? (
-            <button className="btn btn-outline-danger ml-2" onClick={handleLogout}>Logout</button>
+          {user ? (
+            <>
+              <a className="btn btn-outline-success ml-2" href="/post">PostPage</a>
+              <a className="btn btn-outline-info ml-2" href={`/profile/${user?.id}`}>Profile</a>
+              <button className="btn btn-outline-danger ml-2" onClick={handleLogout}>Logout</button>
+            </>
           ) : (
             <>
               <a className="btn btn-outline-danger ml-2" href="/login">Login</a>
