@@ -25,8 +25,8 @@ function Home() {
 
   }, [])
 
-  const quickRender1 = userStats.map(user => <StatCard key = {user.id} name = {user.username} stat={user.num_of_edits}/>)
-  const quickRender2 = pageStats.map(page => <StatCard key = {page.id} name = {page.title} stat= {page.num_of_edits}/>)
+  const quickRender1 = userStats.map(user => <StatCard key={user.id} name={user.username} stat={user.num_of_edits} />)
+  const quickRender2 = pageStats.map(page => <StatCard key={page.id} name={page.title} stat={page.num_of_edits} />)
   return (
     <div className="home-container">
       <div className="container mt-5">
@@ -40,12 +40,19 @@ function Home() {
         </div>
         <hr />
         <p className="mt-4">{text}</p>
-        <ul>
-          {quickRender1}
-        </ul>
-        <ul>
-          {quickRender2}
-        </ul>
+
+        <h4 className='text-center'>Check Out Our Stats</h4>
+        <div className='container d-flex flex-row justify-content-evenly'>
+          <ul className='list-group w-25' >
+            <h6 className='text-center'>Top Editors</h6>
+            {quickRender1}
+          </ul>
+          <ul className='list-group w-25' >
+            <h6 className='text-center'>Top Pages Edited</h6>
+            {quickRender2}
+          </ul>
+
+        </div>
       </div>
     </div>
   );
