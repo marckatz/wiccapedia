@@ -21,14 +21,14 @@ function Navbar({ user, handleLogout }) {
         <div>
           {user ? (
             <>
-              <a className="btn btn-outline-success ml-2" href="/post">PostPage</a>
-              <a className="btn btn-outline-info ml-2" href={`/profile`}>Profile</a>
-              <button className="btn btn-outline-danger ml-2" onClick={handleLogout}>Logout</button>
+              <a className="btn btn-outline-success me-2" href="/post">PostPage</a>
+              <a className="btn btn-outline-info me-2" href={`/profile`}>Profile</a>
+              <button className="btn btn-outline-danger me-2" onClick={handleLogout}>Logout</button>
             </>
           ) : (
             <>
-              <a className="btn btn-outline-danger ml-2" href="/login">Login</a>
-              <a className="btn btn-outline-warning ml-2" href="/signup">Signup</a>
+              <a className="btn btn-outline-danger me-2" href="/login">Login</a>
+              <a className="btn btn-outline-warning me-2" href="/signup">Signup</a>
             </>
           )}
         </div>

@@ -44,7 +44,7 @@ function EditPage({ userId }) {
                 <h1>Editing {title}</h1>
                 <div>
                     <Link to={`/page/${pageId}`}>
-                        <button className="btn btn-outline-primary btn-sm mr-2">{title}</button>
+                        <button className="btn btn-outline-primary btn-sm me-2">{title}</button>
                     </Link>
                     <Link to={`/history/${pageId}`}>
                         <button className="btn btn-outline-secondary btn-sm">History</button>
