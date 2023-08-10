@@ -37,16 +37,28 @@ function EditCard({edit}){
     }
 
     function intoColumns(left, right, index){
+        let color = ""
+        if(index !== 0){
+            if(left[0] === '-' && right[0] == '+'){
+                color = "bg-info bg-opacity-50"
+            }
+            else if(left[0] === '-'){
+                color = "bg-danger bg-opacity-50"
+            }
+            else if(right[0] === '+'){
+                color = "bg-success bg-opacity-50"
+            }
+        }
         return (
-            <div className="row font-monospace border border-secondary rounded align-items-center " style={{height:'2rem'}} key={index}>
-                <div className="col">{left}</div>
-                <div className="col">{right}</div>
+            <div className="row font-monospace border border-secondary rounded align-items-stretch mx-5" style={{height:'1.5rem', overflow:'hidden'}} key={index}>
+                <div className={`col ${color} h-100 border-end border-secondary object-fit-fill`}>{left}</div>
+                <div className={`col ${color} h-100 object-fit-fill`}>{right}</div>
             </div>
         )
     }
 
     return (
-        <div className="container" style={{overflow:"auto"}}>
+        <div className="container mb-5" style={{overflow:"auto"}}>
             <h3>Edited by {username}</h3>
             {/* <p style={{whiteSpace:'pre-wrap'}}>{diff}</p> */}
             {/* <p className="font-monospace" style={{whiteSpace:'pre-wrap', float:'left'}}>{readableDiff(diff)[0]}</p>
