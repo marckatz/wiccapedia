@@ -15,7 +15,7 @@ function Page() {
         setTitle(page.title)
         setText(page.text)
         setAuthor(page.author)
-        console.log(page.edits)
+        // console.log(page.edits)
         if (page.edits.length) {
           const length = page.edits.length
           setLastEditor(page['edits'][length - 1].user.username)
