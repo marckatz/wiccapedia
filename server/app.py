@@ -25,17 +25,24 @@ class Users(Resource):
 
     def post(self):
         data = request.get_json()
+
+        # Check if username already exists
+        existing_user = User.query.filter_by(username=data['username']).first()
+        if existing_user:
+            return make_response({"error": "Username already exists. Please choose another."}, 400)
+
         try:
             # Add password
             new_user = User(username=data['username'], password_hash=data['password'])
         except Exception as e:
-            return make_response({"message": "Error while creating user: " + str(e)}, 400)
-        
+            return make_response({"error": "Error while creating user: " + str(e)}, 400)
+
         db.session.add(new_user)
         db.session.commit()
         session['user_id'] = new_user.id
 
         return make_response(new_user.to_dict(), 201)
+
 
 class UserById(Resource):
     def get(self, id):
