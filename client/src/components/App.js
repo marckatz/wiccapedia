@@ -5,7 +5,6 @@ import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
 import UserProfile from './UserProfile';
-// import EditPage from './EditPage';
 import ViewHistory from './ViewHistory';
 import PostPage from './PostPage';
 import Page from './Page';

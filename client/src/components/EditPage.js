@@ -6,6 +6,8 @@ function EditPage({ user }) {
     const [title, setTitle] = useState(' ')
     const [text, setText] = useState('')
     const [id, setId] = useState(0)
+    const [originalText, setOriginalText] = useState('');
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetch(`/pages/${pageId}`)
@@ -14,11 +16,16 @@ function EditPage({ user }) {
                 setTitle(page.title)
                 setText(page.text)
                 setId(page.id)
+                setOriginalText(page.text);
             })
     }, [])
 
     function handleSubmit(e) {
         e.preventDefault()
+        if (text === originalText) {
+            setError("No changes detected in the edit!");
+            return;
+        }
         const edit_json = {
             page_id: id,
             user_id: user.id,
@@ -59,25 +66,28 @@ function EditPage({ user }) {
             </div>
             <hr />
             {user ? (
-                <div onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <textarea 
-                            className="form-control" 
-                            value={text} 
-                            onChange={(e) => setText(e.target.value)}
-                            rows={25}
-                        ></textarea>
+                <>
+                    {error && <div className="alert alert-danger">{error}</div>}
+                    <div onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <textarea
+                                className="form-control"
+                                value={text}
+                                onChange={(e) => setText(e.target.value)}
+                                rows="25"
+                            ></textarea>
+                        </div>
+                        <button className="btn btn-danger" onClick={handleSubmit}>
+                            Submit Changes
+                        </button>
                     </div>
-                    <button className="btn btn-danger" onClick={handleSubmit}>
-                        Submit Changes
-                    </button>
-                </div>
+                </>
             ) : (
                 <h2>Please login or sign up to edit</h2>
             )
             }
         </div>
-    )
+    );
 }
 
-export default EditPage
+export default EditPage;
