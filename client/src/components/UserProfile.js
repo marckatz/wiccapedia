@@ -19,12 +19,13 @@ function UserProfile({ user }) {
     //   .then((data) => setUserEdits(data))
     //   .catch((error) => console.error("Error fetching user edits:", error));
 
+    // setUserEdits(user.edits)
     // Fetch user's posts
     fetch(`/users/${user.id}/posts`)
       .then((response) => response.json())
       .then((data) => setUserPosts(data))
       .catch((error) => console.error("Error fetching user edits:", error));
-    }, []);
+    }, [user]);
 
   const handlePasswordChange = async () => {
     setSuccess('');
@@ -142,7 +143,7 @@ function UserProfile({ user }) {
       <div className="mt-5">
         <h4>My Edits</h4>
         <ul>
-          {user.edits.filter((value, index, self) => 
+          {user.edits && user.edits.filter((value, index, self) => 
             self.findIndex(v => v.page.title === value.page.title) === index
           ).map((edit, index) => (
             <li key={index}>
