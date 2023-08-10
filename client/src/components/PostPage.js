@@ -5,6 +5,7 @@ const PostPage = ({ username }) => {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     fetch('/pages')
@@ -18,12 +19,24 @@ const PostPage = ({ username }) => {
   }, []);
 
   const handlePostPage = () => {
+    setIsSubmitted(false);
+    setErrorMessage('');
+
+    if (!title.trim()) {
+      setErrorMessage('Title cannot be empty.');
+      return;
+    }
+    if (!text.trim()) {
+      setErrorMessage('Text cannot be empty.');
+      return;
+    }
+
     fetch('/pages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ username: username, title: title, text: text, })
+      body: JSON.stringify({ username: username, title: title, text: text })
     })
       .then(response => response.json())
       .then(data => {
@@ -44,6 +57,11 @@ const PostPage = ({ username }) => {
       {isSubmitted && (
         <div className="alert alert-success" role="alert">
           Page submitted successfully!
+        </div>
+      )}
+      {errorMessage && (
+        <div className="alert alert-danger" role="alert">
+          {errorMessage}
         </div>
       )}
       <form>
