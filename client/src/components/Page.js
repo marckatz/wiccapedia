@@ -15,6 +15,11 @@ function Page() {
         setTitle(page.title)
         setText(page.text)
         setAuthor(page.author)
+        console.log(page.edits)
+        if (page.edits.length) {
+          const length = page.edits.length
+          setLastEditor(page['edits'][length - 1].user.username)
+        }
       })
   }, [])
 
@@ -39,6 +44,7 @@ function Page() {
       <hr />
       <h4>By: {author}</h4>
       <div className="mt-4" style={{ whiteSpace: "pre-wrap" }} dangerouslySetInnerHTML={{ __html: text }}></div>
+      {lastEditor && <h4>Last edited by: {lastEditor}</h4>}
     </div>
   );
 }
