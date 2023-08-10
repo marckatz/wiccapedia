@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-function UserProfile({ userId }) {
-  const [userData, setUserData] = useState({});
+function UserProfile({ user }) {
+  // const [userData, setUserData] = useState({});
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -9,12 +9,12 @@ function UserProfile({ userId }) {
   const [success, setSuccess] = useState('');
   const [showChangePasswordForm, setShowChangePasswordForm] = useState(false);
 
-  useEffect(() => {
-    fetch(`/users/${userId}`)
-      .then((response) => response.json())
-      .then((data) => setUserData(data))
-      .catch((error) => console.error("Error fetching user data:", error));
-  }, [userId]);
+  // useEffect(() => {
+  //   fetch(`/users/${userId}`)
+  //     .then((response) => response.json())
+  //     .then((data) => setUserData(data))
+  //     .catch((error) => console.error("Error fetching user data:", error));
+  // }, [userId]);
 
   const handlePasswordChange = async () => {
     setSuccess('');
@@ -30,7 +30,7 @@ function UserProfile({ userId }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          userId: userId,
+          userId: user.id,
           currentPassword: currentPassword,
           newPassword: newPassword,
         }),
@@ -65,7 +65,7 @@ function UserProfile({ userId }) {
     <div className="container mt-5">
       <h1>My Profile</h1>
       <hr />
-      <h3>Username: {userData.username}</h3>
+      <h3>Username: {user.username}</h3>
 
       {/* Change Password Section */}
       <div className="mt-5">

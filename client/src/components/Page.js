@@ -23,11 +23,11 @@ function Page() {
     <div className="container mt-5">
       <div className="row row-cols-2 align-items-center">
           <div className="col-9">
-            <h1 className="text-truncate lh-base mb-0 fw-bold" style={{whiteSpace:'pre'}}>
+            <h1 className="lh-base fw-bold">
               {title}
             </h1>
           </div>
-          <div className="col-3">
+          <div className="col-3 d-flex justify-content-end">
               <Link to={`/edit/${pageId}`}>
                   <button className="btn btn-outline-primary btn-sm me-2" style={{width:"100px"}}>Edit</button>
               </Link>

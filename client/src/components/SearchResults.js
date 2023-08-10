@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 
 function SearchResults(){
     const {query} = useParams()
     const [results, setResults] = useState([]) 
-
+    const history = useHistory()
+    
     useEffect(()=>{
         fetch(`/search_by_title/${query}`)
         .then(r=> r.ok? r.json(): [])
         .then(pages => {
-            // if(pages.length === 1){jump to page}
+            if(pages.length === 1){
+                history.push(`/page/${pages[0].title}`)
+            }
             setResults(pages)
         })
     },[query]);
