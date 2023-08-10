@@ -7,8 +7,10 @@ function EditCard({edit}){
     function readableDiff(diff_string){
         let diff_list = diff_string.split('\n')
         let line_nums = diff_list.splice(0,3)[2].match(/[-+]\d,\d/g)
-        let left = [line_nums[0]]
-        let right = [line_nums[1]]
+        // let left = [line_nums[0]]
+        // let right = [line_nums[1]]
+        let left = []
+        let right = []
         let imbalance = 0
         diff_list.forEach(line => {
             if(line[0] === '-'){
@@ -37,22 +39,24 @@ function EditCard({edit}){
     }
 
     function intoColumns(left, right, index){
-        let color = ""
-        if(index !== 0){
+        let color_left = ""
+        let color_right = ""
+        // if(index !== 0){
             if(left[0] === '-' && right[0] == '+'){
-                color = "bg-info bg-opacity-50"
+                color_left = "bg-info bg-opacity-50"
+                color_right = "bg-info bg-opacity-50"
             }
             else if(left[0] === '-'){
-                color = "bg-danger bg-opacity-50"
+                color_left = "bg-danger bg-opacity-50"
             }
             else if(right[0] === '+'){
-                color = "bg-success bg-opacity-50"
+                color_right = "bg-success bg-opacity-50"
             }
-        }
+        // }
         return (
-            <div className="row font-monospace border border-secondary rounded align-items-stretch mx-5" style={{height:'1.5rem', overflow:'hidden'}} key={index}>
-                <div className={`col ${color} h-100 border-end border-secondary object-fit-fill`}>{left}</div>
-                <div className={`col ${color} h-100 object-fit-fill`}>{right}</div>
+            <div className="row font-monospace border border-secondary rounded align-items-stretch mx-5"key={index}style={{minHeight:'1.5rem'}} >
+                <div className={`col ${color_left} border-end border-secondary text-break`} >{left}</div>
+                <div className={`col ${color_right} border-start border-secondary text-break`}>{right}</div>
             </div>
         )
     }
