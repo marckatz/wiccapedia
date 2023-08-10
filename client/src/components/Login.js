@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from 'react';
 import {useHistory} from 'react-router-dom';
 
@@ -6,7 +5,6 @@ function Login({handleUser}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // Store any error message
   const [error, setError] = useState(''); 
   const history = useHistory()
 
@@ -18,14 +16,13 @@ function Login({handleUser}) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username: username, password: password }),
-        // credentials : 'include',
       });
 
       const data = await response.json();
 
       if (response.status === 200) {
         console.log("Successfully logged in!", data);
-        history.goBack()
+        history.push('/')
         handleUser(data)
 
       } else if (response.status === 401) {

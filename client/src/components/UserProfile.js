@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; 
 
 function UserProfile({ userId }) {
   const [userData, setUserData] = useState({});
@@ -9,12 +10,27 @@ function UserProfile({ userId }) {
   const [success, setSuccess] = useState('');
   const [showChangePasswordForm, setShowChangePasswordForm] = useState(false);
 
+  const [userEdits, setUserEdits] = useState([]);
+  const [userPosts, setUserPosts] = useState([]);
+
   useEffect(() => {
     fetch(`/users/${userId}`)
       .then((response) => response.json())
       .then((data) => setUserData(data))
       .catch((error) => console.error("Error fetching user data:", error));
-  }, [userId]);
+
+    // Fetch user's edits
+    fetch(`/users/${userId}/edits`)
+      .then((response) => response.json())
+      .then((data) => setUserEdits(data))
+      .catch((error) => console.error("Error fetching user edits:", error));
+
+    // Fetch user's posts
+    fetch(`/users/${userId}/posts`)
+      .then((response) => response.json())
+      .then((data) => setUserPosts(data))
+      .catch((error) => console.error("Error fetching user edits:", error));
+    }, [userId]);
 
   const handlePasswordChange = async () => {
     setSuccess('');
@@ -127,6 +143,39 @@ function UserProfile({ userId }) {
           </button>
         )}
       </div>
+
+      {/* user's edits */}
+      <div className="mt-5">
+        <h4>My Edits</h4>
+        <ul>
+          {userEdits.filter((value, index, self) => 
+            self.findIndex(v => v.page.title === value.page.title) === index
+          ).map((edit, index) => (
+            <li key={index}>
+              <Link to={`/page/${edit.page.title}`}>
+                {edit.page.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* user's posts */}
+      <div className="mt-5">
+        <h4>My Posts</h4>
+        <ul>
+          {userPosts.map((post, index) => {
+            return (
+              <li key={index}>
+                <Link to={`/page/${post.title}`}>
+                  {post.title}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
     </div>
   );
 }
