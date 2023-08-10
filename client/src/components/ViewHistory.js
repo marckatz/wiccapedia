@@ -4,7 +4,7 @@ import EditCard from "./EditCard";
 
 function ViewHistory() {
     const { pageId } = useParams()
-    const [title, setTitle] = useState('')
+    const [title, setTitle] = useState(' ')
     const [edits, setEdits] = useState([])
 
     useEffect(() => {
@@ -22,14 +22,18 @@ function ViewHistory() {
 
     return (
         <div className="container mt-5">
-            <div className="d-flex justify-content-between align-items-start">
-                <h1>{title}</h1>
-                <div>
+            <div className="row row-cols-2 align-items-center">
+                <div className="col-9">
+                    <h1 className="text-truncate lh-base mb-0 fw-bold" style={{ whiteSpace: 'pre' }}>
+                        {title}
+                    </h1>
+                </div>
+                <div className="col-3">
                     <Link to={`/edit/${pageId}`}>
-                        <button className="btn btn-outline-primary btn-sm me-2">Edit</button>
+                        <button className="btn btn-outline-primary btn-sm me-2" style={{ width: "100px" }}>Edit</button>
                     </Link>
                     <Link to={`/page/${pageId}`}>
-                        <button className="btn btn-outline-secondary btn-sm">{title}</button>
+                        <button className="btn btn-outline-secondary btn-sm text-truncate" style={{ width: "100px", whiteSpace: 'pre' }}>{title}</button>
                     </Link>
                 </div>
             </div>

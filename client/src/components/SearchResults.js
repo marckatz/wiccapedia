@@ -15,7 +15,8 @@ function SearchResults(){
     },[query]);
 
     const result_list = results.map(page => {
-        return <Link to={`/page/${page.title}`} key={page.id}><h2>{page.title}</h2></Link>
+        let underscoredTitle = page.title.replaceAll(' ', '_')
+        return <Link to={`/page/${underscoredTitle}`} key={page.id}><h2>{page.title}</h2></Link>
     })
 
     return (
