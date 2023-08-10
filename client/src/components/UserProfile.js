@@ -148,7 +148,7 @@ function UserProfile({ user }) {
           ).map((edit, index) => ( */}
           {user.edits && user.edits.map((edit, index) => (
             <li key={index}>
-              {edit.time}: <Link to={`/edit/${edit.page.title}`} className="link-info">
+              {edit.time}: <Link to={`/history/${edit.page.title}`} className="link-info">
                 {edit.page.title}
               </Link>
             </li>
