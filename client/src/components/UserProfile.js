@@ -56,6 +56,8 @@ function UserProfile({ userId }) {
     setCurrentPassword('');
     setNewPassword('');
     setConfirmPassword('');
+    setSuccess('');
+    setError('');
     setShowChangePasswordForm(false);
   };
 

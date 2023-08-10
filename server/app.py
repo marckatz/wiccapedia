@@ -222,21 +222,23 @@ def change_password():
     user_id = session.get('user_id')
     if not user_id:
         return make_response({'error': 'User not logged in'}, 401)
+    
+    user = User.query.filter_by(id=user_id).first()
 
     data = request.get_json()
     current_password = data.get('currentPassword')
     new_password = data.get('newPassword')
 
-    if not (current_password and new_password):
-        return make_response({'error': 'Old and new passwords are required'}, 400)
-
-    user = User.query.filter_by(id=user_id).first()
-
     if not user:
         return make_response({'error': 'User not found'}, 404)
-
+    if not (current_password and new_password):
+        return make_response({'error': 'Old and new passwords are required'}, 400)
     if not user.authenticate(current_password):
         return make_response({'error': 'Incorrect old password'}, 401)
+    if current_password == new_password:
+        return make_response({'error': 'New password cannot be the same as the old password'}, 400)
+    if len(new_password) < 6 or len(new_password) > 25:
+        return make_response({'error': 'New password must be between 6 and 25 characters'}, 400)
 
     user.password_hash = new_password
     db.session.commit()
