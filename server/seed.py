@@ -225,8 +225,8 @@ if __name__ == "__main__":
 
 
 
-
-        db.session.add_all([page1, page2, page3, page4, page5, page6, page7, page8, page9])
+        page_list = [page1, page2, page3, page4, page5, page6, page7, page8, page9]
+        db.session.add_all(page_list)
         db.session.commit()
         print("Adding pages")
 
@@ -250,6 +250,27 @@ if __name__ == "__main__":
         page1.text = edit_text2
         db.session.add_all([edit1, edit2])
         db.session.commit()
+        
+        for i in range(10):
+            page = rc(page_list)
+            text = page.text
+            edit_text1 = text.replace("magic", "MAAAGICCCC", 1) 
+            edit_text2 = text.replace("the", "!thee!", 1)
+            edit_text3 = text+"<p>A New Line</p>"
+            if text != edit_text1:
+                edit_text = edit_text1
+            elif text != edit_text2:
+                edit_text = edit_text2
+            else:
+                edit_text = edit_text3
+            # print(f"----------{i}-------------")
+            # print(edit_text)
+            new_edit = page.create_edit(new_text = edit_text, user_id = ri(1,3))
+                          
+            page.text = edit_text
+            db.session.add(new_edit)
+            db.session.commit()
+
         print("Adding edits")
 
         print("Finished Seeding")
