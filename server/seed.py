@@ -22,6 +22,7 @@ if __name__ == "__main__":
         marc = User(username="marc123", password_hash="123456")
         yu = User(username="yu1234", password_hash="abcdef")
         tj = User(username="tj1234", password_hash="qweasd")
+
         print("Adding users")
         page1 = Page(title="title1", text=\
 """<h1>header</h1>
@@ -38,6 +39,7 @@ if __name__ == "__main__":
             [marc, yu, tj, page1, page2, page3]
         )
         db.session.commit()
+
 
         edit_text1 = """<h1>header</h1>
 <p>This is a new line</p>
