@@ -184,7 +184,7 @@ def page_by_title(title):
     if page:
         return make_response(page.to_dict(), 200)
     else:
-        return make_response({'error':f'page "{title}" not found'}, 404)
+        return make_response({'error':f'page "{spaced_title}" not found'}, 404)
     
 
 # Login
