@@ -89,5 +89,9 @@ class Page(db.Model, SerializerMixin):
         )
         return new_edit
 
+    @property
+    def last_to_edit(self):
+        return self.edits[-1].user
+
     def __repr__(self):
         return f'<Page {self.id} {self.title}>'
