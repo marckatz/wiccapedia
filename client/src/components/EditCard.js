@@ -7,10 +7,8 @@ function EditCard({edit}){
     function readableDiff(diff_string){
         let diff_list = diff_string.split('\n')
         let line_nums = diff_list.splice(0,3)[2].match(/[-+]\d,\d/g)
-        // let left = [line_nums[0]]
-        // let right = [line_nums[1]]
-        let left = []
-        let right = []
+        let left = [line_nums[0]]
+        let right = [line_nums[1]]
         let imbalance = 0
         diff_list.forEach(line => {
             if(line[0] === '-'){

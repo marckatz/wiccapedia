@@ -6,6 +6,7 @@ function Page() {
   const [title, setTitle] = useState(' ')
   const [text, setText] = useState('')
   const [author, setAuthor] = useState('')
+  const [lastEditor, setLastEditor] = useState('')
 
   useEffect(() => {
     fetch(`/pages/${pageId}`)
