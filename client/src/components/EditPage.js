@@ -51,7 +51,7 @@ function EditPage({ user }) {
         <div className="container mt-5">
             <div className="row row-cols-2 align-items-center">
                 <div className="col-9">
-                    <h1 className="lh-base mb-0">
+                    <h1 className="lh-base">
                         Editing <span className="fw-bold">{title}</span>
                     </h1>
                 </div>
@@ -78,7 +78,7 @@ function EditPage({ user }) {
                                 rows="25"
                             ></textarea>
                         </div>
-                        <button className="btn btn-danger" onClick={handleSubmit}>
+                        <button className="btn btn-danger mb-5" onClick={handleSubmit}>
                             Submit Changes
                         </button>
                     </div>

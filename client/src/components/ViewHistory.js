@@ -24,7 +24,7 @@ function ViewHistory() {
         <div className="container mt-5">
             <div className="row row-cols-2 align-items-center">
                 <div className="col-9">
-                    <h1 className="lh-base fw-bold" >
+                    <h1 className="lh-base fw-bold" style={{whiteSpace:'pre'}}>
                         {title}
                     </h1>
                 </div>
