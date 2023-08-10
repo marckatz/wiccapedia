@@ -29,7 +29,7 @@ function Page() {
           </div>
           <div className="col-3 d-flex justify-content-end">
               <Link to={`/edit/${pageId}`}>
-                  <button className="btn btn-outline-primary btn-sm me-2" style={{width:"100px"}}>Edit</button>
+                  <button className="btn btn-outline-info btn-sm me-2" style={{width:"100px"}}>Edit</button>
               </Link>
               <Link to={`/history/${pageId}`}>
                   <button className="btn btn-outline-secondary btn-sm" style={{width:"100px"}}>View History</button>

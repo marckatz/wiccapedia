@@ -120,7 +120,7 @@ function UserProfile({ user }) {
           </form>
         ) : (
           <button 
-            className="btn btn-outline-primary" 
+            className="btn btn-outline-info" 
             onClick={() => setShowChangePasswordForm(true)}
           >
             Change Password

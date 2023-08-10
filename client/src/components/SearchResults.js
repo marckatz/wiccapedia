@@ -20,7 +20,7 @@ function SearchResults(){
 
     const result_list = results.map(page => {
         let underscoredTitle = page.title.replaceAll(' ', '_')
-        return <Link to={`/page/${underscoredTitle}`} key={page.id}><h2>{page.title}</h2></Link>
+        return <Link className="link-info" to={`/page/${underscoredTitle}`} key={page.id}><h2>{page.title}</h2></Link>
     })
 
     return (

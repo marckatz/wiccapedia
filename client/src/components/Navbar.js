@@ -23,12 +23,12 @@ function Navbar({ user, handleLogout }) {
             <>
               <Link className="btn btn-outline-success me-2" to="/post">New Article</Link>
               <Link className="btn btn-outline-info me-2" to="/profile">Profile</Link>
-              <button className="btn btn-outline-danger me-2" onClick={handleLogout}>Logout</button>
+              <button className="btn btn-outline-danger me-2" onClick={handleLogout}>Log Out</button>
             </>
           ) : (
             <>
-              <Link className="btn btn-outline-danger me-2" to="/login">Login</Link>
-              <Link className="btn btn-outline-warning me-2" to="/signup">Signup</Link>
+              <Link className="btn btn-outline-warning me-2" to="/signup">Sign Up</Link>
+              <Link className="btn btn-outline-danger me-2" to="/login">Log In</Link>
             </>
           )}
         </div>

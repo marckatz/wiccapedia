@@ -87,7 +87,7 @@ const PostPage = ({ username }) => {
             placeholder="Enter page content"></textarea>
         </div>
 
-        <button type="button" className="btn btn-primary" onClick={handlePostPage}>
+        <button type="button" className="btn btn-info" onClick={handlePostPage}>
           Submit
         </button>
       </form>
