@@ -11,6 +11,13 @@ function Navbar({ user, handleUser }) {
       history.push('/')
     })
   }
+
+  function handleLogin(){
+    history.push('/login', {from:history.location.pathname})
+  }
+  function handleSignup(){
+    history.push('/signup', {from:history.location.pathname})
+  }
   
   return (
     <nav className="navbar navbar-expand-lg navbar-light justify-content-center">
@@ -37,8 +44,8 @@ function Navbar({ user, handleUser }) {
             </>
           ) : (
             <>
-              <Link className="btn btn-outline-warning me-2" to="/signup">Sign Up</Link>
-              <Link className="btn btn-outline-danger me-2" to="/login">Log In</Link>
+              <div className="btn btn-outline-warning me-2" onClick={handleSignup}>Sign Up</div>
+              <div className="btn btn-outline-danger me-2" onClick={handleLogin}>Log In</div>
             </>
           )}
         </div>
