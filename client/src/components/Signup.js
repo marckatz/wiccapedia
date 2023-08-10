@@ -29,7 +29,7 @@ function Signup({ handleUser }) {
         if (res.ok) {
           res.json().then(data => {
             handleUser(data.username);
-            history.push('/');
+            history.goBack();
           });
         } else {
           res.json().then(data => {
@@ -44,8 +44,8 @@ function Signup({ handleUser }) {
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-4">
-          <h2 className="text-center">Signup</h2>
-          {serverError && <div className="alert alert-danger">{serverError}</div>} {/* <- Display server error */}
+          <h2 className="text-center">Sign Up</h2>
+          {serverError && <div className="alert alert-danger">{serverError}</div>}
           <form onSubmit={formik.handleSubmit}>
             <div className="mb-1">
               <label htmlFor='username' className='form-label'>Username:</label>
@@ -75,7 +75,7 @@ function Signup({ handleUser }) {
             </div>
             <div className="text-center">
               <button className="btn btn-warning" type="submit">
-                Signup
+                Sign Up
               </button>
             </div>
           </form>
