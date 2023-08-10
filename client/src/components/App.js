@@ -46,7 +46,8 @@ function App() {
           <Route path="/history/:pageId" component={ViewHistory} />
           <Route path="/edit/:pageId" component={()=><EditPage user={user} />} />
           <Route path="/search/:query" component={SearchResults} />
-          {user && <Route path="/profile" component={()=><UserProfile userId={user.id} />} />}
+          {/* {user && <Route path="/profile" component={()=><UserProfile userId={user.id} />} />} */}
+          {user && <Route path="/profile" component={()=><UserProfile user={user} />} />}
           {user && <Route path="/post" component={()=><PostPage username={user.username} />} />}
           {/* <Route path="/edit/:pageId" component={EditPage} /> */}
           

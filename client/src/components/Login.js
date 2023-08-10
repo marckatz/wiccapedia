@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from 'react';
 import {useHistory} from 'react-router-dom';
 
@@ -6,7 +5,6 @@ function Login({handleUser}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // Store any error message
   const [error, setError] = useState(''); 
   const history = useHistory()
 
@@ -18,7 +16,6 @@ function Login({handleUser}) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username: username, password: password }),
-        // credentials : 'include',
       });
 
       const data = await response.json();
@@ -46,7 +43,7 @@ function Login({handleUser}) {
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-4">
-          <h2 className="text-center">Login</h2>
+          <h2 className="text-center">Log In</h2>
           {error && <div className="alert alert-danger">{error}</div>}
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="mb-1">
@@ -73,7 +70,7 @@ function Login({handleUser}) {
             <p></p>
             <div className="text-center">
               <button className="btn btn-danger" onClick={handleLogin}>
-                Login
+                Log In
               </button>
             </div>
           </form>

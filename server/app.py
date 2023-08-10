@@ -20,7 +20,7 @@ def index():
     return "<h1>Phase 4 Project Server</h1>"
 
 class Users(Resource):
-    def get (self):
+    def get(self):
         return make_response ([u.to_dict() for u in User.query.all()])
 
     def post(self):
@@ -277,6 +277,25 @@ def get_page_info():
         dict_list.append(res_dict)
     
     return make_response(dict_list)
+
+@app.route('/users/<int:id>/edits')
+def get_user_edits(id):
+    user = User.query.filter_by(id=id).first()
+    if not user:
+        return make_response({'error': 'User not found'}, 404)
+    
+    edits = user.edits
+    return make_response([edit.to_dict() for edit in edits], 200)
+
+@app.route('/users/<int:id>/posts')
+def get_user_posts(id):
+    user = User.query.filter_by(id=id).first()
+    if not user:
+        return make_response({'error': 'User not found'}, 404)
+    
+    posts = Page.query.filter(Page.author==user.username).all()
+    return make_response([post.to_dict() for post in posts], 200)
+
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)

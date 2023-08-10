@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; 
 
-function UserProfile({ userId }) {
-  const [userData, setUserData] = useState({});
+function UserProfile({ user }) {
+  // const [userData, setUserData] = useState({});
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [showChangePasswordForm, setShowChangePasswordForm] = useState(false);
+  const [userEdits, setUserEdits] = useState([]);
+  const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
-    fetch(`/users/${userId}`)
+    // Fetch user's edits
+    fetch(`/users/${user.id}/edits`)
       .then((response) => response.json())
-      .then((data) => setUserData(data))
-      .catch((error) => console.error("Error fetching user data:", error));
-  }, [userId]);
+      .then((data) => setUserEdits(data))
+      .catch((error) => console.error("Error fetching user edits:", error));
+
+    // Fetch user's posts
+    fetch(`/users/${user.id}/posts`)
+      .then((response) => response.json())
+      .then((data) => setUserPosts(data))
+      .catch((error) => console.error("Error fetching user edits:", error));
+    }, []);
 
   const handlePasswordChange = async () => {
     setSuccess('');
@@ -30,7 +40,7 @@ function UserProfile({ userId }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          userId: userId,
+          userId: user.id,
           currentPassword: currentPassword,
           newPassword: newPassword,
         }),
@@ -65,7 +75,7 @@ function UserProfile({ userId }) {
     <div className="container mt-5">
       <h1>My Profile</h1>
       <hr />
-      <h3>Username: {userData.username}</h3>
+      <h3>Username: {user.username}</h3>
 
       {/* Change Password Section */}
       <div className="mt-5">
@@ -120,13 +130,46 @@ function UserProfile({ userId }) {
           </form>
         ) : (
           <button 
-            className="btn btn-outline-primary" 
+            className="btn btn-outline-info" 
             onClick={() => setShowChangePasswordForm(true)}
           >
             Change Password
           </button>
         )}
       </div>
+
+      {/* user's edits */}
+      <div className="mt-5">
+        <h4>My Edits</h4>
+        <ul>
+          {userEdits.filter((value, index, self) => 
+            self.findIndex(v => v.page.title === value.page.title) === index
+          ).map((edit, index) => (
+            <li key={index}>
+              <Link to={`/page/${edit.page.title}`}>
+                {edit.page.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* user's posts */}
+      <div className="mt-5">
+        <h4>My Posts</h4>
+        <ul>
+          {userPosts.map((post, index) => {
+            return (
+              <li key={index}>
+                <Link to={`/page/${post.title}`}>
+                  {post.title}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
     </div>
   );
 }
