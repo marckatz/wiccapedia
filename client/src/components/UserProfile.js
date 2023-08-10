@@ -143,11 +143,12 @@ function UserProfile({ user }) {
       <div className="mt-5">
         <h4>My Edits</h4>
         <ul>
-          {user.edits && user.edits.filter((value, index, self) => 
+          {/* {user.edits && user.edits.filter((value, index, self) => 
             self.findIndex(v => v.page.title === value.page.title) === index
-          ).map((edit, index) => (
+          ).map((edit, index) => ( */}
+          {user.edits && user.edits.map((edit, index) => (
             <li key={index}>
-              <Link to={`/page/${edit.page.title}`} className="link-info">
+              {edit.time}: <Link to={`/edit/${edit.page.title}`} className="link-info">
                 {edit.page.title}
               </Link>
             </li>

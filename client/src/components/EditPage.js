@@ -52,7 +52,7 @@ function EditPage({ user }) {
             <div className="row row-cols-2 align-items-center">
                 <div className="col-9">
                     <h1 className="lh-base">
-                        Editing <span className="fw-bold">{title}</span>
+                        Editing <span className="fw-bold">{title} </span>
                     </h1>
                 </div>
                 <div className="col-3 d-flex justify-content-end">
