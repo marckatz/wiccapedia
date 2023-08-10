@@ -28,7 +28,7 @@ function Signup({ handleUser }) {
       }).then((res) => {
         if (res.ok) {
           res.json().then(data => {
-            handleUser(data.username);
+            handleUser(data);
             history.goBack();
           });
         } else {

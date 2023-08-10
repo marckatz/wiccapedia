@@ -216,7 +216,7 @@ def login():
 # Logout
 @app.route('/logout', methods=['DELETE'])
 def logout():
-    session.pop('user_id', None)
+    session['user_id'] = None
     return make_response({'message': 'Logged out successfully'}, 204)
 
 # check if browser has session 

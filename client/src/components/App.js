@@ -23,7 +23,7 @@ function App() {
       setUser(null);
     })
   }
-  console.log(user)
+  // console.log(user)
 
   useEffect(()=>{
     fetch('/check_session').then((res) => {
@@ -32,7 +32,7 @@ function App() {
       }
     })
 
-  }, [])
+  }, [setUser])
 
   return (
     <Router>
