@@ -24,10 +24,14 @@ function EditCard({edit}){
                     (imbalance > 0?left:right).push(...Array(Math.abs(imbalance)).fill(' '))
                     imbalance = 0
                 }
-                left.push(line)
-                right.push(line)
+                // left.push(line)
+                // right.push(line)
             }
         });
+        if(imbalance !== 0){
+            (imbalance > 0?left:right).push(...Array(Math.abs(imbalance)).fill(' '))
+            imbalance = 0
+        }
         // return [left.join('\n'), right.join('\n')]
         const rows = left.map((leftLine, index) => {
             let rightLine = right[index]

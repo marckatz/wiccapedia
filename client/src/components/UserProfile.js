@@ -130,7 +130,7 @@ function UserProfile({ user }) {
           </form>
         ) : (
           <button 
-            className="btn btn-outline-info" 
+            className="btn btn-outline-danger" 
             onClick={() => setShowChangePasswordForm(true)}
           >
             Change Password
@@ -146,7 +146,7 @@ function UserProfile({ user }) {
             self.findIndex(v => v.page.title === value.page.title) === index
           ).map((edit, index) => (
             <li key={index}>
-              <Link to={`/page/${edit.page.title}`}>
+              <Link to={`/page/${edit.page.title}`} className="link-info">
                 {edit.page.title}
               </Link>
             </li>
@@ -161,7 +161,7 @@ function UserProfile({ user }) {
           {userPosts.map((post, index) => {
             return (
               <li key={index}>
-                <Link to={`/page/${post.title}`}>
+                <Link to={`/page/${post.title}`} className="link-info">
                   {post.title}
                 </Link>
               </li>
