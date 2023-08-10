@@ -5,6 +5,7 @@ function EditPage({ user }) {
     const { pageId } = useParams()
     const [title, setTitle] = useState('')
     const [text, setText] = useState('')
+    const [id, setId] = useState(null)
 
     useEffect(() => {
         fetch(`/pages/${pageId}`)
@@ -12,13 +13,14 @@ function EditPage({ user }) {
             .then(page => {
                 setTitle(page.title)
                 setText(page.text)
+                setId(page.id)
             })
     }, [])
 
     function handleSubmit(e) {
         e.preventDefault()
         const edit_json = {
-            page_id: pageId,
+            page_id: id,
             user_id: user.id,
             new_text: text
         }

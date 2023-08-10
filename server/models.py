@@ -40,7 +40,12 @@ class User(db.Model, SerializerMixin):
         # returns most edits for a single page by user
         page_tup = db.session.query(Page, db.func.count(Edit.id).label('count')).join(Edit).filter(Edit.user_id == self.id).group_by(Edit.page_id).order_by(db.desc('count')).first()
         return f'{page_tup[0]} with {page_tup[1]} edits'
-        
+
+    @classmethod
+    def get_most_edited_list(cls):
+        most_edited_tuple = db.session.query(cls, db.func.count(Edit.id).label('edit_count')).join(Edit).group_by(Edit.user_id).order_by(db.desc('edit_count')).limit(3).all()
+        return most_edited_tuple
+
 
     def __repr__(self):
         return f'<User {self.id} {self.username}>'
@@ -92,6 +97,11 @@ class Page(db.Model, SerializerMixin):
     @property
     def last_to_edit(self):
         return self.edits[-1].user
+
+    @classmethod
+    def get_most_edited_list(cls):
+        most_edited_tuple = db.session.query(cls, db.func.count(Edit.id).label('edit_count')).join(Edit).group_by(Edit.page_id).order_by(db.desc('edit_count')).limit(3).all()
+        return most_edited_tuple
 
     def __repr__(self):
         return f'<Page {self.id} {self.title}>'

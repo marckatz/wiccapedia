@@ -209,6 +209,7 @@ def logout():
     session.pop('user_id', None)
     return make_response({'message': 'Logged out successfully'}, 204)
 
+# check if browser has session 
 @app.route('/check_session')
 def check_session ():
     user = User.query.filter(User.id == session.get('user_id')).first()
@@ -245,9 +246,9 @@ def change_password():
 
 @app.route('/get_user_stats')
 def get_user_info():
-    user_stats = db.session.query(User, db.func.count(Edit.id).label('edit_count')).join(Edit).group_by(Edit.user_id).order_by(db.desc('edit_count')).limit(3).all()
+    most_edited_tuple = User.get_most_edited_list()
     dict_list = []
-    for tuple in user_stats:
+    for tuple in most_edited_tuple:
         res_dict = tuple[0].to_dict(only = ('username', 'id'))
         res_dict['num_of_edits'] = tuple[1]
         dict_list.append(res_dict)
@@ -256,9 +257,9 @@ def get_user_info():
 
 @app.route('/get_page_stats')
 def get_page_info():
-    page_stats = db.session.query(Page, db.func.count(Edit.id).label('edit_count')).join(Edit).group_by(Edit.page_id).order_by(db.desc('edit_count')).limit(3).all()
+    most_edited_tuple = Page.get_most_edited_list()
     dict_list = []
-    for tuple in page_stats:
+    for tuple in most_edited_tuple:
         res_dict = tuple[0].to_dict(only = ('title', 'id'))
         res_dict['num_of_edits'] = tuple[1]
         dict_list.append(res_dict)
