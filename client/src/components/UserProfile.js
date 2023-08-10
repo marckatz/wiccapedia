@@ -14,10 +14,10 @@ function UserProfile({ user }) {
 
   useEffect(() => {
     // Fetch user's edits
-    fetch(`/users/${user.id}/edits`)
-      .then((response) => response.json())
-      .then((data) => setUserEdits(data))
-      .catch((error) => console.error("Error fetching user edits:", error));
+    // fetch(`/users/${user.id}/edits`)
+    //   .then((response) => response.json())
+    //   .then((data) => setUserEdits(data))
+    //   .catch((error) => console.error("Error fetching user edits:", error));
 
     // Fetch user's posts
     fetch(`/users/${user.id}/posts`)
@@ -142,7 +142,7 @@ function UserProfile({ user }) {
       <div className="mt-5">
         <h4>My Edits</h4>
         <ul>
-          {userEdits.filter((value, index, self) => 
+          {user.edits.filter((value, index, self) => 
             self.findIndex(v => v.page.title === value.page.title) === index
           ).map((edit, index) => (
             <li key={index}>
