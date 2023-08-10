@@ -65,7 +65,7 @@ function EditCard({edit}){
 
     return (
         <div className="container mb-5" style={{overflow:"auto"}}>
-            <h3>Edited by {username}</h3>
+            <h3>Edited by {username} on {edit.time}</h3>
             {/* <p style={{whiteSpace:'pre-wrap'}}>{diff}</p> */}
             {/* <p className="font-monospace" style={{whiteSpace:'pre-wrap', float:'left'}}>{readableDiff(diff)[0]}</p>
             <p className="font-monospace" style={{whiteSpace:'pre-wrap', float:'right'}}>{readableDiff(diff)[1]}</p> */}

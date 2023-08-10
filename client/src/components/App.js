@@ -13,17 +13,7 @@ import EditPage from './EditPage';
 
 function App() {
   const [user, setUser] = useState(null);
-
   const handleUser = (user) => setUser(user);
-
-  const handleLogout = () => {
-    fetch('/logout', {
-      method : "DELETE",
-    }).then(() => {
-      setUser(null);
-    })
-  }
-  // console.log(user)
 
   useEffect(()=>{
     fetch('/check_session').then((res) => {
@@ -31,13 +21,12 @@ function App() {
         res.json().then((userObj) => setUser(userObj));
       }
     })
-
   }, [setUser])
 
   return (
     <Router>
       <div className="App">
-        <Navbar user={user} handleLogout={handleLogout}/> 
+        <Navbar user={user} handleUser={handleUser}/> 
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={()=><Login handleUser={handleUser} />} />
