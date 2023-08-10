@@ -1,36 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; 
 
-function UserProfile({ userId }) {
-  const [userData, setUserData] = useState({});
+function UserProfile({ user }) {
+  // const [userData, setUserData] = useState({});
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [showChangePasswordForm, setShowChangePasswordForm] = useState(false);
-
   const [userEdits, setUserEdits] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
-    fetch(`/users/${userId}`)
-      .then((response) => response.json())
-      .then((data) => setUserData(data))
-      .catch((error) => console.error("Error fetching user data:", error));
-
     // Fetch user's edits
-    fetch(`/users/${userId}/edits`)
+    fetch(`/users/${user.id}/edits`)
       .then((response) => response.json())
       .then((data) => setUserEdits(data))
       .catch((error) => console.error("Error fetching user edits:", error));
 
     // Fetch user's posts
-    fetch(`/users/${userId}/posts`)
+    fetch(`/users/${user.id}/posts`)
       .then((response) => response.json())
       .then((data) => setUserPosts(data))
       .catch((error) => console.error("Error fetching user edits:", error));
-    }, [userId]);
+    }, []);
 
   const handlePasswordChange = async () => {
     setSuccess('');
@@ -46,7 +40,7 @@ function UserProfile({ userId }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          userId: userId,
+          userId: user.id,
           currentPassword: currentPassword,
           newPassword: newPassword,
         }),
@@ -81,7 +75,7 @@ function UserProfile({ userId }) {
     <div className="container mt-5">
       <h1>My Profile</h1>
       <hr />
-      <h3>Username: {userData.username}</h3>
+      <h3>Username: {user.username}</h3>
 
       {/* Change Password Section */}
       <div className="mt-5">
@@ -136,7 +130,7 @@ function UserProfile({ userId }) {
           </form>
         ) : (
           <button 
-            className="btn btn-outline-primary" 
+            className="btn btn-outline-info" 
             onClick={() => setShowChangePasswordForm(true)}
           >
             Change Password

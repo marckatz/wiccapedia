@@ -55,9 +55,9 @@ function EditPage({ user }) {
                         Editing <span className="fw-bold">{title}</span>
                     </h1>
                 </div>
-                <div className="col-3">
+                <div className="col-3 d-flex justify-content-end">
                     <Link to={`/page/${pageId}`}>
-                        <button className="btn btn-outline-primary btn-sm me-2 text-truncate" style={{ width: "100px", whiteSpace: 'pre' }}>{title}</button>
+                        <button className="btn btn-outline-info btn-sm me-2 text-truncate" style={{ width: "100px", whiteSpace: 'pre' }}>{title}</button>
                     </Link>
                     <Link to={`/history/${pageId}`}>
                         <button className="btn btn-outline-secondary btn-sm" style={{ width: "100px" }}>View History</button>
@@ -74,6 +74,7 @@ function EditPage({ user }) {
                                 className="form-control"
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}
+                                style={{fontFamily:'monospace'}}
                                 rows="25"
                             ></textarea>
                         </div>

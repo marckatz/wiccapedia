@@ -22,7 +22,7 @@ function Login({handleUser}) {
 
       if (response.status === 200) {
         console.log("Successfully logged in!", data);
-        history.push('/')
+        history.goBack()
         handleUser(data)
 
       } else if (response.status === 401) {
@@ -43,7 +43,7 @@ function Login({handleUser}) {
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-4">
-          <h2 className="text-center">Login</h2>
+          <h2 className="text-center">Log In</h2>
           {error && <div className="alert alert-danger">{error}</div>}
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="mb-1">
@@ -70,7 +70,7 @@ function Login({handleUser}) {
             <p></p>
             <div className="text-center">
               <button className="btn btn-danger" onClick={handleLogin}>
-                Login
+                Log In
               </button>
             </div>
           </form>
