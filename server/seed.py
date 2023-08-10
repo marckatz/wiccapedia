@@ -33,10 +33,18 @@ if __name__ == "__main__":
 """)
         page2 = Page(title="title2", text="text2\n")
         page3 = Page(title="title3", text="text3\n")
+        
+        page4 = Page(title="Magic Wands", author="tj1234", text=\
+"""<h2>Unveiling the Enchantment: The Allure and Mystique of Magic Wands</h2>
+<p>In the realm of fantasy and folklore, few objects capture the imagination quite like magic wands. These slender, ornate instruments are synonymous with power, enchantment, and the ability to shape reality itself. From the enchanting tales of Merlin to the iconic world of Harry Potter, magic wands have held a significant place in human culture for centuries, transcending time and space to weave their spellbinding stories.</p>
+<h2>The Origins of Magic Wands: An Enchanted History</h2>
+<p>The concept of magic wands dates back to ancient civilizations where shamans, priests, and wise individuals wielded staffs or rods as symbols of their authority and spiritual connection. In Egyptian mythology, the scepter was often associated with the power of gods and pharaohs. The idea of imbuing these staffs with supernatural abilities gradually evolved, becoming a prominent motif in myths and legends across cultures.</p>
+<p>One of the earliest known mentions of a wand-like instrument comes from the Metamorphoses, an epic poem by the Roman poet Ovid. In this work, the goddess Circe employs a magical wand to transform her enemies into animals. This portrayal laid the groundwork for the wand as a tool of transformation and manipulation of reality.</p>
+""")
         print("Adding pages")
 
         db.session.add_all(
-            [marc, yu, tj, page1, page2, page3]
+            [marc, yu, tj, page1, page2, page3, page4]
         )
         db.session.commit()
 

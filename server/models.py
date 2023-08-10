@@ -1,5 +1,6 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy.orm import validates
 import difflib
 
 from config import db, bcrypt
@@ -40,7 +41,24 @@ class User(db.Model, SerializerMixin):
         # returns most edits for a single page by user
         page_tup = db.session.query(Page, db.func.count(Edit.id).label('count')).join(Edit).filter(Edit.user_id == self.id).group_by(Edit.page_id).order_by(db.desc('count')).first()
         return f'{page_tup[0]} with {page_tup[1]} edits'
+
+    @classmethod
+    def get_most_edited_list(cls):
+        most_edited_tuple = db.session.query(cls, db.func.count(Edit.id).label('edit_count')).join(Edit).group_by(Edit.user_id).order_by(db.desc('edit_count')).limit(3).all()
+        return most_edited_tuple
         
+    @validates('username')
+    def validate_username(self, key, new_username):
+        if len(new_username) < 5 or len(new_username) > 25:
+            raise ValueError('Username must between 5 and 25 characters!')
+        return new_username
+    
+    @validates('password_hash')
+    def validate_password_hash(self, key, new_password):
+        if len(new_password) < 6 or len(new_password) > 25:
+            raise ValueError('Password must between 6 and 25 characters!')
+        return new_password
+
 
     def __repr__(self):
         return f'<User {self.id} {self.username}>'
@@ -58,6 +76,12 @@ class Edit(db.Model, SerializerMixin):
     page = db.relationship('Page', back_populates='edits')
 
     serialize_rules = ('-user.edits', '-page.edits',)
+
+    @validates('diff')
+    def validate_diff(self, key, new_diff):
+        if not new_diff:
+            raise ValueError("Cannot submit blank edit!")
+        return new_diff
 
     def __repr__(self):
         return f'<Edit {self.id} {self.user_id} {self.page_id}>'
@@ -92,6 +116,11 @@ class Page(db.Model, SerializerMixin):
     @property
     def last_to_edit(self):
         return self.edits[-1].user
+
+    @classmethod
+    def get_most_edited_list(cls):
+        most_edited_tuple = db.session.query(cls, db.func.count(Edit.id).label('edit_count')).join(Edit).group_by(Edit.page_id).order_by(db.desc('edit_count')).limit(3).all()
+        return most_edited_tuple
 
     def __repr__(self):
         return f'<Page {self.id} {self.title}>'
