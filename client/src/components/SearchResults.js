@@ -11,7 +11,8 @@ function SearchResults(){
         .then(r=> r.ok? r.json(): [])
         .then(pages => {
             if(pages.length === 1){
-                history.push(`/page/${pages[0].title}`)
+                let underscoredTitle = pages[0].title.replaceAll(' ', '_')
+                history.push(`/page/${underscoredTitle}`)
             }
             setResults(pages)
         })
