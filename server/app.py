@@ -175,9 +175,12 @@ def search_by_title(search):
     page_dicts = [p.to_dict(only=('title','id')) for p in pages]
     return make_response(page_dicts, 200)
 
+
+# Expects title with spaces replaced by underscores
 @app.route('/pages/<string:title>')
 def page_by_title(title):
-    page = Page.query.filter_by(title=title).first()
+    spaced_title = title.replace('_', ' ')
+    page = Page.query.filter_by(title=spaced_title).first()
     if page:
         return make_response(page.to_dict(), 200)
     else:

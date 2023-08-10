@@ -6,7 +6,7 @@ function Navbar({ user, handleLogout }) {
     <nav className="navbar navbar-expand-lg navbar-light justify-content-center">
       <div className="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
         {/* Logo and Home link */}
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center ms-2">
           <Link to="/">
             <img src="https://img.freepik.com/premium-vector/triple-moon-pentagram_257845-4104.jpg?w=1380"
               alt="Wiccapedia Logo" style={{ width: '40px', marginRight: '10px' }} className='rounded-4'/>
