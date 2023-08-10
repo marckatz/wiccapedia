@@ -1,7 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Search from './Search';
 
-function Navbar({ user, handleLogout }) { 
+function Navbar({ user, handleUser }) {
+  const history = useHistory()
+  const handleLogout = () => {
+    fetch('/logout', {
+      method : "DELETE",
+    }).then(() => {
+      handleUser(null);
+      history.push('/')
+    })
+  }
+  
   return (
     <nav className="navbar navbar-expand-lg navbar-light justify-content-center">
       <div className="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
