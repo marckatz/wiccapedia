@@ -8,6 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
+# from config import db
 from models import db, User, Edit, Page
 
 if __name__ == "__main__":
@@ -28,18 +29,37 @@ if __name__ == "__main__":
         )
         db.session.commit()
         print("Adding users")
-
+        print("Adding pages")
         page_list = []
-        page1 = Page(title="title1", text=\
-"""<h1>header</h1>
-<p>This is line 1</p>
-<p>This is line 2</p>
-<p>This is line 3</p>
-<p>This is line 4</p>
+        page1 = Page(title="Wiccan Symbols", text=\
+"""<h3>Unveiling the Mysteries: A Guide to Wiccan Symbols</h3>
+<p>In the realm of spirituality, Wicca stands as a modern pagan, nature-based religion that draws upon ancient traditions, folklore, and magical practices. Central to Wiccan beliefs is a profound connection with nature, the worship of deity and divinity as immanent forces, and the use of rituals and symbols to channel energies for various purposes. Wiccan symbols play a crucial role in embodying and transmitting these beliefs, carrying with them deep meanings and representations that resonate with practitioners. In this article, we delve into the enchanting world of Wiccan symbols, exploring their significance, origins, and the magic they invoke.</p>
+
+<h3>The Pentacle: A Gateway to the Mystical</h3>
+<p>One of the most recognizable Wiccan symbols is the pentacle. Typically depicted as a five-pointed star enclosed within a circle, the pentacle is a potent emblem representing the five elements: earth, air, fire, water, and spirit. Each point of the star corresponds to one of these elements, and the circle symbolizes unity, wholeness, and the eternal cycle of life.</p>
+<p>Contrary to some misconceptions, the pentacle is not a representation of evil or malevolence. Rather, it embodies the harmonious interplay of natural forces, highlighting Wiccan reverence for the interconnectedness of all things. Wiccans often use the pentacle in rituals and ceremonies to invoke elemental energies, protection, and to focus their intentions.</p>
+
+<h3>The Triquetra: Weaving the Triple Aspects</h3>
+<p>Another prominent Wiccan symbol is the triquetra, also known as the triple goddess symbol. This intricate design consists of three interlocked loops, often used to depict the maiden, mother, and crone - the three phases of the goddess and stages of life: youth, maturity, and wisdom. This symbol encapsulates the cyclical nature of existence, the changing seasons, and the perpetual journey of birth, growth, and transformation.</p>
+<p>The triquetra also represents the unity of the three realms: land, sea, and sky. Moreover, it mirrors the Wiccan concept of the triple aspect, which is present not only in the goddess but also in the god, emphasizing duality, balance, and the ebb and flow of energy.</p>
+
+<h3>The Crescent Moon: Embracing Mystery and Magic</h3>
+<p>Wicca holds a profound reverence for the moon, considering it a source of inspiration, energy, and magic. The crescent moon, with its curving shape, is an emblem of the waxing and waning phases of the moon. It symbolizes renewal, regeneration, and the cycles of life. Additionally, it represents the goddess in her maiden aspect and the energies associated with intuition, dreams, and the subconscious mind.</p>
+<p>Wiccans often align their rituals with the phases of the moon, utilizing its energy for spellwork, meditation, and divination. The crescent moon symbolizes their connection with the mystical and their dedication to harnessing the moon's power for spiritual growth.</p>
+
+<h3>The Cauldron: A Vessel of Transformation</h3>
+<p>Central to magical practices, the cauldron is a symbol of transformation, rebirth, and the cyclical nature of life. In Wiccan symbolism, the cauldron represents the goddess's womb, a vessel of creation and sustenance. It is often used in rituals for brewing potions, scrying, and transformational spellwork</p>.
+<p>The cauldron is also linked to the element of water, symbolizing emotions, intuition, and the subconscious. Through the cauldron's representation, Wiccans embrace the idea that like ingredients in a pot, their experiences blend together to shape their spiritual journey and personal evolution.</p>
+
+<h3>Final Thoughts</h3>
+<p>Wiccan symbols serve as bridges between the material and spiritual realms, encapsulating profound beliefs and energies in beautifully intricate forms. Each symbol is a window into Wicca's reverence for nature, balance, and the interconnectedness of all things. From the pentacle's elemental harmony to the triquetra's triple goddess representation, the crescent moon's mystical allure, and the cauldron's transformative power, these symbols guide practitioners on their path of spiritual exploration, magic, and self-discovery.</p>
 """)
-    
-        page2 = Page(title="Unveiling the Enchantment: The Allure and Mystique of Magic Wands", author="tj1234", text=\
-"""<p>In the realm of fantasy and folklore, few objects capture the imagination as vividly as the magic wand. These enchanting tools have been an integral part of countless tales, serving as conduits for wizards, witches, and sorcerers to channel their mystical powers. From the classic stories of Merlin and Gandalf to the modern interpretations in books and movies, the magic wand remains an iconic symbol of the supernatural. In this article, we delve into the fascinating world of magic wands, exploring their origins, significance, and enduring allure.</p>
+
+
+
+        page2 = Page(title="Magic Wands", author="tj1234", text=\
+"""<h3>Unveiling the Enchantment: The Allure and Mystique of Magic Wands</h3>
+<p>In the realm of fantasy and folklore, few objects capture the imagination as vividly as the magic wand. These enchanting tools have been an integral part of countless tales, serving as conduits for wizards, witches, and sorcerers to channel their mystical powers. From the classic stories of Merlin and Gandalf to the modern interpretations in books and movies, the magic wand remains an iconic symbol of the supernatural. In this article, we delve into the fascinating world of magic wands, exploring their origins, significance, and enduring allure.</p>
 
 <h3>Origins and Evolution</h3>
 <p>The concept of using a wand-like object to wield magical powers has ancient roots, spanning various cultures and civilizations. Ancient Egyptian priests used staffs and rods to perform rituals and cast spells, while in European history, the wand has been associated with symbols of authority and mysticism. It wasn't until the Middle Ages that the wand began to truly take on its magical connotations.</p>
@@ -61,8 +81,9 @@ if __name__ == "__main__":
 <p>Whether you envision yourself as a wizard, a witch, or simply an adventurer in a fantastical realm, the magic wand serves as a reminder that our imagination knows no bounds. As long as tales of enchantment and mystery continue to captivate us, the magic wand will remain an enduring symbol of the magical possibilities that lie just beyond our reach.</p>
 """)
 
-        page3 = Page(title="Wiccan Perspectives on the Seasons", author="yu1234", text =\
-"""<p>Wicca, a modern pagan, witchcraft religion, is deeply connected to nature and its cycles. The changing of seasons holds significant spiritual importance within the Wiccan tradition.</p>
+        page3 = Page(title="Wiccan Seasons", author="yu1234", text =\
+"""<h3>Wiccan Perspectives on the Seasons</h3>
+<p>Wicca, a modern pagan, witchcraft religion, is deeply connected to nature and its cycles. The changing of seasons holds significant spiritual importance within the Wiccan tradition.</p>
 
 <h3>Spring Equinox: Ostara</h3>
 <p>The Spring Equinox, known as Ostara in Wiccan circles, marks the balance between day and night. Wiccans celebrate the awakening of the earth and the renewal of life. It's a time to honor fertility, growth, and new beginnings. Traditionally, colored eggs and symbols of hares are common during this celebration.</p>
@@ -108,8 +129,9 @@ if __name__ == "__main__":
 <p>Potion making is a profound way to connect with the energies of nature and manifest your desires through magical means. Whether you're crafting potions for personal use or to share with others, remember that your intentions and energy are the most potent ingredients. With practice, patience, and respect for the craft, potion making can become a cherished aspect of your magical journey.</p>
 """)
 
-        page5 = Page(title="Wiccan Rituals: Exploring Nature-Based Practices", author="marc123", text=\
-"""<p>Wicca, a modern pagan, witchcraft religion, places a strong emphasis on connecting with nature and the divine through rituals. These rituals are not only a means of spiritual expression but also a way to honor the cycles of nature, celebrate life events, and foster a deeper connection with the self and the universe.</p>
+        page5 = Page(title="Wiccan Rituals", author="marc123", text=\
+"""<h3>Wiccan Rituals</h3>
+<p>Wicca, a modern pagan, witchcraft religion, places a strong emphasis on connecting with nature and the divine through rituals. These rituals are not only a means of spiritual expression but also a way to honor the cycles of nature, celebrate life events, and foster a deeper connection with the self and the universe.</p>
 
 <h3>The Wheel of the Year</h3>
 <p>Central to Wiccan rituals is the celebration of the Wheel of the Year, which consists of eight Sabbats that mark the changing seasons. These Sabbats are divided into two groups: the solar festivals, or the solstices and equinoxes, and the cross-quarter festivals, which fall between the solstices and equinoxes.</p>
@@ -133,8 +155,9 @@ if __name__ == "__main__":
 <p>Wiccan rituals are a beautiful blend of spirituality, nature reverence, and personal empowerment. Through these practices, Wiccans seek to connect with the energies of the natural world, foster personal growth, and create positive changes in their lives. The diversity of rituals within Wicca allows for individual expression while staying rooted in the shared values of harmony, balance, and respect for all living beings.</p>
 """)
 
-        page6=Page(title='Unraveling the Magic of "Hocus Pocus": A Timeless Tale of Enchantment and Halloween', author="tj1234", text=\
-"""<p>Every year, as the leaves turn shades of gold and the air becomes crisper, the enchanting aroma of pumpkin spice and the distant echo of cackles signal the approach of Halloween. And at the heart of this bewitching season lies a beloved cinematic gem that has become a timeless tradition for many: "Hocus Pocus." This spellbinding film weaves together humor, magic, and a touch of nostalgia, creating a bewitching concoction that has charmed audiences for nearly three decades.</p>
+        page6=Page(title='Hocus Pocus', author="tj1234", text=\
+"""<h3>Unraveling the Magic of "Hocus Pocus": A Timeless Tale of Enchantment and Halloween</h3>
+<p>Every year, as the leaves turn shades of gold and the air becomes crisper, the enchanting aroma of pumpkin spice and the distant echo of cackles signal the approach of Halloween. And at the heart of this bewitching season lies a beloved cinematic gem that has become a timeless tradition for many: "Hocus Pocus." This spellbinding film weaves together humor, magic, and a touch of nostalgia, creating a bewitching concoction that has charmed audiences for nearly three decades.</p>
 
 <h3>A Spellbinding Story</h3>
 <p>Released in 1993 and directed by Kenny Ortega, "Hocus Pocus" tells the tale of three witch sisters—Winifred, Sarah, and Mary Sanderson—who are resurrected in modern-day Salem, Massachusetts, 300 years after their initial demise. Thirsting for eternal life, the witches embark on a quest to regain their youth by sucking the life force from children. The plot thickens as a trio of unlikely heroes, Max Dennison, his sister Dani, and their newfound friend Allison, attempt to thwart the witches' nefarious plans.</p>
@@ -178,8 +201,9 @@ if __name__ == "__main__":
 <p>While vampires and witches may remain creatures of fiction, their enduring appeal reflects our fascination with the enigmatic and the supernatural. Whether we find ourselves captivated by the allure of the vampire's eternal night or drawn to the mystique of the witch's arcane power, these archetypes continue to cast their spell upon our collective imagination, reminding us that within the shadows and magic, we can explore the depths of our own humanity.</p>
 """)
 
-        page8 = Page(title = "The Enigmatic Allure of Spellbooks in the World of Magic", author="yu1234", text=\
-"""<p>In the realm of magic, where the mystical and the mundane intertwine, few artifacts hold as much fascination and power as spellbooks. These ancient tomes, bound in leather, adorned with intricate symbols, and whispered to be repositories of arcane knowledge, have captured the imagination of both mages and the curious alike for centuries. As gateways to hidden realms of incantations and enchantments, spellbooks stand as a testament to humanity's ceaseless pursuit of the unknown and the extraordinary.</p>
+        page8 = Page(title = "Spellbooks", author="yu1234", text=\
+"""<h3>The Enigmatic Allure of Spellbooks in the World of Magic</h3>
+<p>In the realm of magic, where the mystical and the mundane intertwine, few artifacts hold as much fascination and power as spellbooks. These ancient tomes, bound in leather, adorned with intricate symbols, and whispered to be repositories of arcane knowledge, have captured the imagination of both mages and the curious alike for centuries. As gateways to hidden realms of incantations and enchantments, spellbooks stand as a testament to humanity's ceaseless pursuit of the unknown and the extraordinary.</p>
 
 <h3>The Origins of Spellbooks: Portals to the Arcane</h3>
 <p>The origins of spellbooks can be traced back to the earliest civilizations where oral traditions were transcribed into written form, allowing knowledge to be preserved and passed down through generations. As societies evolved, so did the art of magic. Spellbooks emerged as repositories of spells, rituals, and invocations, offering insight into the subtle interplay between the natural and supernatural realms. These books became repositories of not only practical magical knowledge but also reflections of the cultures and beliefs that spawned them.</p>
@@ -201,8 +225,9 @@ if __name__ == "__main__":
 <p>As we turn the pages of these enchanted volumes, we are reminded that the mysteries of the universe are vast and ever-unfolding. Whether we find ourselves weaving intricate incantations or simply basking in the enchanting tales spun within these pages, spellbooks remain an enduring testament to humanity's eternal fascination with the mystical and the extraordinary.</p>
 """)
 
-        page9 = Page(title="Magic Familiars: A Journey into Enchanted Bonds", author="marc123", text=\
-"""<p>Throughout the annals of history and across diverse cultures, magic has woven its threads into the fabric of human existence. In the realm of sorcery and mysticism, one intriguing element stands out: the concept of magic familiars. These enigmatic companions have fascinated and inspired both practitioners of the arcane arts and curious minds alike. In this exploration, we delve into the mystique surrounding magic familiars, uncovering their origins, roles, and the enduring allure they hold in the world of magic.</p>
+        page9 = Page(title="Magic Familiars", author="marc123", text=\
+"""<h3>Magic Familiars: A Journey into Enchanted Bonds</h3>
+<p>Throughout the annals of history and across diverse cultures, magic has woven its threads into the fabric of human existence. In the realm of sorcery and mysticism, one intriguing element stands out: the concept of magic familiars. These enigmatic companions have fascinated and inspired both practitioners of the arcane arts and curious minds alike. In this exploration, we delve into the mystique surrounding magic familiars, uncovering their origins, roles, and the enduring allure they hold in the world of magic.</p>
 
 <h3>Origins and Evolution: A Historical Perspective</h3>
 <p>The origins of magic familiars can be traced back to ancient civilizations, where the bond between humans and animals was deeply intertwined with spiritual beliefs. In many cultures, animals were seen as conduits to the supernatural, possessing a connection to otherworldly realms that humans could tap into. These animals were often revered as messengers or protectors, bridging the gap between the mortal world and the mystical.</p>
@@ -222,55 +247,62 @@ if __name__ == "__main__":
 <p>In conclusion, magic familiars remain a captivating aspect of the magical landscape, weaving together history, spirituality, and the ever-evolving nature of human beliefs. Their roles have transformed over time, adapting to cultural shifts and emerging paradigms. Yet, at their core, familiars remain vessels of enchantment, guiding practitioners on a journey of self-discovery and connection with the arcane forces that surround us.</p>
 """)
 
+        page10 = Page(title="Famous Witches", text=\
+"""
+<h3>Chronicles of Famous Witches Throughout History</h3>
+<p>Throughout history, witches have fascinated and captivated human imagination. These enigmatic figures have traversed the fine line between reality and myth, bewitching both the minds of their contemporaries and the generations that followed. From ancient legends to modern interpretations, famous witches have left an indelible mark on cultures across the globe. This article embarks on a journey through time to explore some of the most renowned witches in history, shedding light on their stories, beliefs, and lasting legacies.</p>
 
+<h3>1. Circe - The Mythical Sorceress</h3>
+<p>In ancient Greek mythology, Circe stands as one of the most iconic witches. A daughter of the sun god Helios, she was known for her mastery of magic and her residence on the isolated island of Aeaea. Circe is famously associated with transforming Odysseus' men into swine in Homer's "Odyssey." Her story has transcended time, inspiring countless artistic interpretations that delve into the complexities of power, temptation, and enchantment.</p>
 
+<h3>2. Morgan le Fay - Arthurian Legend</h3>
+<p>The Arthurian legend introduces us to Morgan le Fay, a character who embodies the dual nature of magic. Often depicted as both a healer and a sorceress, Morgan is King Arthur's half-sister. Her character evolved over time, from being a benevolent healer to a cunning enchantress. Her tale exemplifies the ambivalence of magic, showcasing its potential for both good and ill.</p>
 
-        page_list = [page1, page2, page3, page4, page5, page6, page7, page8, page9]
+<h3>3. Tituba - Salem Witch Trials</h3>
+<p>The infamous Salem Witch Trials of 1692 cast a long shadow on the history of witchcraft. Among those accused was Tituba, a Caribbean slave and a central figure in the witch hysteria that gripped colonial Massachusetts. Tituba's "confessions" of practicing witchcraft fueled the mass hysteria and accusations that followed. Her story serves as a haunting reminder of the dangers of unfounded accusations and societal hysteria.</p>
+
+<h3>4. Marie Laveau - The Voodoo Queen</h3>
+<p>Moving into the realm of folk magic and spirituality, Marie Laveau emerges as a prominent figure in the history of witchcraft. Hailing from New Orleans, she was known as the "Voodoo Queen" and became a central figure in the city's Voodoo traditions. Laveau's practices blended African spiritual traditions with Catholicism, creating a unique and influential form of magic that continues to captivate curious minds to this day.</p>
+
+<h3>Conclusion</h3>
+<p>Famous witches throughout history have woven a rich tapestry of narratives, beliefs, and cultural significance. From the mythical enchantresses of ancient Greece to the real-life practitioners of magic, these figures continue to captivate our imagination and challenge our perceptions of the mystical. Their stories remind us of the complex interplay between power, knowledge, and the human longing for connection with the unknown. As we delve into the chronicles of famous witches, we uncover not only their tales but also the eternal fascination that magic and witchcraft evoke.</p>
+""")
+
+        page_list = [page1, page2, page3, page4, page5, page6, page7, page8, page9, page10]
         db.session.add_all(page_list)
         db.session.commit()
-        print("Adding pages")
 
 
 
-        edit_text1 = """<h1>header</h1>
-<p>This is a new line</p>
-<p>This is line 1</p>
-<p>This is line 2 modified</p>
-<p>This is line 3</p>
-"""
-        edit_text2 = """<h1>header</h1>
-<p>This is not a new line anymore</p>
-<p>This is line 1</p>
-<p>This is line 2 modified again</p>
-<p>This is line 3</p>
-"""
-        edit1 = page1.create_edit(edit_text1, 1)
-        page1.text = edit_text1
-        edit2 = page1.create_edit(edit_text2, 1)
-        page1.text = edit_text2
-        db.session.add_all([edit1, edit2])
-        db.session.commit()
-        
-        for i in range(10):
+        print("Adding edits")       
+        for i in range(16):
             page = rc(page_list)
             text = page.text
-            edit_text1 = text.replace("magic", "MAAAGICCCC", 1) 
-            edit_text2 = text.replace("the", "!thee!", 1)
-            edit_text3 = text+"<p>A New Line</p>"
-            if text != edit_text1:
-                edit_text = edit_text1
-            elif text != edit_text2:
-                edit_text = edit_text2
-            else:
-                edit_text = edit_text3
-            # print(f"----------{i}-------------")
-            # print(edit_text)
+            split_list = text.split('\n')
+            index = ri(1,len(split_list))
+            split_list.insert(index, "<p>GONNA SPRINKLE SOME OF MY MAGIC HEHEHEHE</p>")
+            edit_text3 = '\n'.join(split_list)
+
+            if i < 7:
+                edit_text1 = text.replace("magic", "MAAAGICCCC", 3)
+                if text != edit_text1:
+                    edit_text = edit_text1
+                else:
+                    edit_text = edit_text3               
+            else : 
+                edit_text2 = text.replace("witch", "WIIITCHAAE", 3)
+                if text != edit_text2:
+                    edit_text = edit_text2
+                else:
+                    edit_text = edit_text3
             new_edit = page.create_edit(new_text = edit_text, user_id = ri(1,3))
                           
             page.text = edit_text
+            # print(f"----------{i}-------------")
+            # print(page.text)
             db.session.add(new_edit)
             db.session.commit()
 
-        print("Adding edits")
+
 
         print("Finished Seeding")

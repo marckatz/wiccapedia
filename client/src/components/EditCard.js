@@ -6,7 +6,7 @@ function EditCard({edit}){
 
     function readableDiff(diff_string){
         let diff_list = diff_string.split('\n')
-        let line_nums = diff_list.splice(0,3)[2].match(/[-+]\d,\d/g)
+        // let line_nums = diff_list.splice(0,3)[2].match(/[-+]\d,\d/g)
         let left = []
         let right = []
         let imbalance = 0
@@ -44,7 +44,7 @@ function EditCard({edit}){
         let color_left = ""
         let color_right = ""
         // if(index !== 0){
-            if(left[0] === '-' && right[0] == '+'){
+            if(left[0] === '-' && right[0] === '+'){
                 color_left = "bg-info bg-opacity-50"
                 color_right = "bg-info bg-opacity-50"
             }

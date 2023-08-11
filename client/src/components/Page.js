@@ -21,7 +21,7 @@ function Page() {
           setLastEditor(page['edits'][length - 1].user.username)
         }
       })
-  }, [])
+  }, [pageId])
 
 
   return (
