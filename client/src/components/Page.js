@@ -52,9 +52,9 @@ function Page() {
         </div>
       </div>
       <hr />
-      <h4>By: {author}</h4>
+      <h5>By: {author}</h5>
+      {lastEditor && <h6>Last edited by: {lastEditor}</h6>}
       <div className="mt-4" style={{ whiteSpace: "pre-wrap" }} dangerouslySetInnerHTML={{ __html: text }}></div>
-      {lastEditor && <h4>Last edited by: {lastEditor}</h4>}
     </div>
   );
 }

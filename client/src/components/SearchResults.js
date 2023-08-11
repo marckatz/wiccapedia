@@ -21,7 +21,7 @@ function SearchResults(){
     //     })
     // },[query]);
 
-    const result_list = results? [`No results found`] : results.map(page => {
+    const result_list = results.length === 0? [`No results found`] : results.map(page => {
         let underscoredTitle = page.title.replaceAll(' ', '_')
         return <Link className="link-info" to={`/page/${underscoredTitle}`} key={page.id}><h2>{page.title}</h2></Link>
     })

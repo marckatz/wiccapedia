@@ -7,15 +7,15 @@ function StatCard({ userStats, pageStats }) {
     return (
         <>
             <h3 className='text-center'>Check Out Who's Editing What</h3>
-            <div className='container d-flex flex-row justify-content-evenly'>
-                <ul className='list-group w-25' >
-                    <h5 className='text-center'>Top Editors</h5>
+            <div className='container row justify-content-evenly mb-5'>
+                <div className='border border-secondary col-4'>
+                    <div className="row"><h5 className='col text-center'>Top Editors</h5></div>
                     {renderUserStats}
-                </ul>
-                <ul className='list-group w-33' >
+                </div>
+                <div className='border border-secondary col-4' >
                     <h5 className='text-center'>Top Pages Edited</h5>
                     {renderPageStats}
-                </ul>
+                </div>
 
             </div>
         </>
@@ -25,20 +25,20 @@ function StatCard({ userStats, pageStats }) {
 function BuildUserColumns({name, stat}) {
 
     return (
-        <li className="list-group-item d-flex justify-content-between align-items-center">
-            <span className="fw-bold text-center" style={{width : '60%'}}>{name}</span>
-            <span className="fw-bold"># of Edits: {stat}</span>
-        </li>
+        <div className="row justify-content-between align-items-between border-top border-secondary">
+            <div className="col fw-bold text-center" >{name}</div>
+            <div className="col fw-bold text-center"># of Edits: {stat}</div>
+        </div>
     )
 }
 
 function BuildPageColumns({title, stat}) {
 
     return (
-        <li className="list-group-item d-flex justify-content-between align-items-center">
-            <span className="fw-bold text-center" style={{width : '75%'}}>{title}</span>
-            <span className="fw-bold"># of Edits: {stat}</span>
-        </li>
+        <div className="row justify-content-between align-items-between border-top border-secondary">
+            <div className="col fw-bold text-center" >{title}</div>
+            <div className="col fw-bold text-center"># of Edits: {stat}</div>
+        </div>
     )
 }
 export default StatCard

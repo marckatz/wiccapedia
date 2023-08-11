@@ -32,7 +32,7 @@ if __name__ == "__main__":
         print("Adding users")
         print("Adding pages")
         page_list = []
-        page1 = Page(title="Wiccan Symbols", text=\
+        page1 = Page(title="Wiccan Symbols", author="yu1234", text=\
 """<h3>Unveiling the Mysteries: A Guide to Wiccan Symbols</h3>
 <p>In the realm of spirituality, Wicca stands as a modern pagan, nature-based religion that draws upon ancient traditions, folklore, and magical practices. Central to Wiccan beliefs is a profound connection with nature, the worship of deity and divinity as immanent forces, and the use of rituals and symbols to channel energies for various purposes. Wiccan symbols play a crucial role in embodying and transmitting these beliefs, carrying with them deep meanings and representations that resonate with practitioners. In this article, we delve into the enchanting world of Wiccan symbols, exploring their significance, origins, and the magic they invoke.</p>
 
@@ -248,7 +248,7 @@ if __name__ == "__main__":
 <p>In conclusion, magic familiars remain a captivating aspect of the magical landscape, weaving together history, spirituality, and the ever-evolving nature of human beliefs. Their roles have transformed over time, adapting to cultural shifts and emerging paradigms. Yet, at their core, familiars remain vessels of enchantment, guiding practitioners on a journey of self-discovery and connection with the arcane forces that surround us.</p>
 """)
 
-        page10 = Page(title="Famous Witches", text=\
+        page10 = Page(title="Famous Witches", author="marc123", text=\
 """
 <h3>Chronicles of Famous Witches Throughout History</h3>
 <p>Throughout history, witches have fascinated and captivated human imagination. These enigmatic figures have traversed the fine line between reality and myth, bewitching both the minds of their contemporaries and the generations that followed. From ancient legends to modern interpretations, famous witches have left an indelible mark on cultures across the globe. This article embarks on a journey through time to explore some of the most renowned witches in history, shedding light on their stories, beliefs, and lasting legacies.</p>

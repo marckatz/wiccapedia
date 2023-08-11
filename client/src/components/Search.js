@@ -12,13 +12,15 @@ function Search(props) {
       fetch(`/search_by_title/${query}`)
       .then(r=> r.ok? r.json(): [])
       .then(pages => {
-          if(pages.length === 1){
-              let underscoredTitle = pages[0].title.replaceAll(' ', '_')
-              history.push(`/page/${underscoredTitle}`)
-          }
-          else{
-            history.push(`/search/${query}`, {params : pages})
-          }
+        const q = query
+        setQuery('')
+        if(pages.length === 1){
+            let underscoredTitle = pages[0].title.replaceAll(' ', '_')
+            history.push(`/page/${underscoredTitle}`)
+        }
+        else{
+          history.push(`/search/${q}`, {params : pages})
+        }
 
       })
     }

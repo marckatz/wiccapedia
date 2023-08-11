@@ -82,7 +82,7 @@ class Pages(Resource):
                 author = data['username']
             )
             if new_page.text[-1] != '\n':
-                new_page.text.append('\n')
+                new_page.text += '\n'
             db.session.add(new_page)
             db.session.commit()
             return make_response(new_page.to_dict(), 201)
