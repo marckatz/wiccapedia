@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 
 function UserProfile({ user }) {
   // const [userData, setUserData] = useState({});
@@ -25,7 +25,7 @@ function UserProfile({ user }) {
       .then((response) => response.json())
       .then((data) => setUserPosts(data))
       .catch((error) => console.error("Error fetching user edits:", error));
-    }, [user]);
+  }, [user]);
 
   const handlePasswordChange = async () => {
     setSuccess('');
@@ -72,6 +72,25 @@ function UserProfile({ user }) {
     setShowChangePasswordForm(false);
   };
 
+  const handleDelete = (id, index) => {
+    // console.log(id)
+    // setUserPosts((self)=>{
+    //   const copy = [...self]
+    //   copy.splice(index, 1)
+    //   return copy
+    // })
+    fetch(`/pages/${id}`, {
+      method: "DELETE",
+    }).then(() => {
+      console.log("DELETED")
+      setUserPosts((self)=>{
+        const copy = [...self]
+        copy.splice(index, 1)
+        return copy
+      })
+    })
+  }
+  console.log(userPosts)
   return (
     <div className="container mt-5">
       <h1>My Profile</h1>
@@ -85,7 +104,7 @@ function UserProfile({ user }) {
         {success && <div className="alert alert-success">{success}</div>}
 
         {showChangePasswordForm ? (
-          <form onSubmit={e=>e.preventDefault()}>
+          <form onSubmit={e => e.preventDefault()}>
             <div className="mb-1">
               <label className='form-label'>Current Password:</label>
               <input
@@ -114,24 +133,24 @@ function UserProfile({ user }) {
               />
             </div>
             <div className='mb-1'>
-              <button 
-                className="btn btn-danger" 
+              <button
+                className="btn btn-danger"
                 onClick={handlePasswordChange}
                 disabled={!currentPassword || !newPassword || !confirmPassword}
               >
                 Change Password
               </button>
-              <button 
-                className="btn btn-secondary ms-3" 
-                onClick={handleCancelChange} 
+              <button
+                className="btn btn-secondary ms-3"
+                onClick={handleCancelChange}
               >
                 Cancel Change
               </button>
             </div>
           </form>
         ) : (
-          <button 
-            className="btn btn-outline-danger" 
+          <button
+            className="btn btn-outline-danger"
             onClick={() => setShowChangePasswordForm(true)}
           >
             Change Password
@@ -166,6 +185,7 @@ function UserProfile({ user }) {
                 <Link to={`/page/${post.title}`} className="link-info">
                   {post.title}
                 </Link>
+                <button className="btn btn-outline-secondary btn-sm" style={{ width: "100px" }} onClick={()=>handleDelete(post.id, index)}>DELETE POST</button>
               </li>
             );
           })}
