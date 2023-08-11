@@ -13,8 +13,8 @@ from config import db
 from models import User, Edit, Page
 
 if __name__ == "__main__":
-    fake = Faker()
-    with app.app_context():
+     fake = Faker()
+     with app.app_context():
         print("Starting seed...")
         # clear database
         User.query.delete()

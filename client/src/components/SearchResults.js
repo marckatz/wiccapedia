@@ -21,7 +21,7 @@ function SearchResults(){
     //     })
     // },[query]);
 
-    const result_list = results.map(page => {
+    const result_list = results? [`No results found`] : results.map(page => {
         let underscoredTitle = page.title.replaceAll(' ', '_')
         return <Link className="link-info" to={`/page/${underscoredTitle}`} key={page.id}><h2>{page.title}</h2></Link>
     })
@@ -29,7 +29,7 @@ function SearchResults(){
     return (
         <div className="container mt-5">
             <div className="d-flex justify-content-between align-items-start">
-                <h1>Search Results for: "{query}":</h1>
+                <h1>Search Results for "{query}":</h1>
             </div>
             <hr />
             {result_list}
