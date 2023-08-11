@@ -6,7 +6,7 @@ function EditCard({edit}){
 
     function readableDiff(diff_string){
         let diff_list = diff_string.split('\n')
-        // let line_nums = diff_list.splice(0,3)[2].match(/[-+]\d,\d/g)
+        diff_list.splice(0,3)
         let left = []
         let right = []
         let imbalance = 0
@@ -66,14 +66,10 @@ function EditCard({edit}){
     return (
         <div className="container mb-5" style={{overflow:"auto"}}>
             <h3>Edited by {username} on {edit.time}</h3>
-            {/* <p style={{whiteSpace:'pre-wrap'}}>{diff}</p> */}
-            {/* <p className="font-monospace" style={{whiteSpace:'pre-wrap', float:'left'}}>{readableDiff(diff)[0]}</p>
-            <p className="font-monospace" style={{whiteSpace:'pre-wrap', float:'right'}}>{readableDiff(diff)[1]}</p> */}
             {readableDiff(diff)}
         </div>
     )
 }
-{/* <span style={{textAlign:'left'}}></span> */}
-{/* <span style={{float:'right'}}></span> */}
+
 
 export default EditCard
