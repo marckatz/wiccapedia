@@ -8,8 +8,9 @@ from faker import Faker
 
 # Local imports
 from app import app
-# from config import db
-from models import db, User, Edit, Page
+
+from config import db
+from models import User, Edit, Page
 
 if __name__ == "__main__":
     fake = Faker()

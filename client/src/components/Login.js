@@ -22,7 +22,13 @@ function Login({handleUser}) {
 
       if (response.status === 200) {
         console.log("Successfully logged in!", data);
-        history.goBack()
+        const prev = history.location.state && history.location.state.from
+        if(prev && (prev !== '/login' && prev !== '/signup')){
+          history.push(prev)
+        }
+        else{
+          history.push('/')
+        }
         handleUser(data)
 
       } else if (response.status === 401) {

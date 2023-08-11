@@ -28,8 +28,13 @@ function Signup({ handleUser }) {
       }).then((res) => {
         if (res.ok) {
           res.json().then(data => {
-            handleUser(data);
-            history.goBack();
+            handleUser(data);const prev = history.location.state && history.location.state.from
+            if(prev && (prev !== '/login' && prev !== '/signup')){
+              history.push(prev)
+            }
+            else{
+              history.push('/')
+            }
           });
         } else {
           res.json().then(data => {
