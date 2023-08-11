@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
+import React from "react";
+// import React, { useEffect, useState } from "react";
+// import { useParams, Link, useHistory, useLocation } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 
 function SearchResults(){
     const {query} = useParams()
-    const [results, setResults] = useState([]) 
-    const history = useHistory()
-    
-    useEffect(()=>{
-        fetch(`/search_by_title/${query}`)
-        .then(r=> r.ok? r.json(): [])
-        .then(pages => {
-            if(pages.length === 1){
-                let underscoredTitle = pages[0].title.replaceAll(' ', '_')
-                history.push(`/page/${underscoredTitle}`)
-            }
-            setResults(pages)
-        })
-    },[query]);
+    // const [results, setResults] = useState([]) 
+    // const history = useHistory()
+    const location = useLocation()
+    const results = location.state.params
+    // useEffect(()=>{
+    //     fetch(`/search_by_title/${query}`)
+    //     .then(r=> r.ok? r.json(): [])
+    //     .then(pages => {
+    //         if(pages.length === 1){
+    //             let underscoredTitle = pages[0].title.replaceAll(' ', '_')
+    //             history.push(`/page/${underscoredTitle}`)
+    //         }
+    //         setResults(pages)
+    //     })
+    // },[query]);
 
     const result_list = results.map(page => {
         let underscoredTitle = page.title.replaceAll(' ', '_')

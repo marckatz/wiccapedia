@@ -9,7 +9,7 @@ function UserProfile({ user }) {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [showChangePasswordForm, setShowChangePasswordForm] = useState(false);
-  const [userEdits, setUserEdits] = useState([]);
+  // const [userEdits, setUserEdits] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {

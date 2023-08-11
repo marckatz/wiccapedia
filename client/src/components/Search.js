@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Search(props) {
@@ -9,7 +9,18 @@ function Search(props) {
   const handleSearch = (e) => {
     e.preventDefault()
     if(query){
-      history.push(`/search/${query}`)
+      fetch(`/search_by_title/${query}`)
+      .then(r=> r.ok? r.json(): [])
+      .then(pages => {
+          if(pages.length === 1){
+              let underscoredTitle = pages[0].title.replaceAll(' ', '_')
+              history.push(`/page/${underscoredTitle}`)
+          }
+          else{
+            history.push(`/search/${query}`, {params : pages})
+          }
+
+      })
     }
   }
 
