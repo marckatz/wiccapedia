@@ -26,6 +26,10 @@ const PostPage = ({ username }) => {
       setErrorMessage('Title cannot be empty.');
       return;
     }
+    if (!isNaN(title)) {
+      setErrorMessage('Title cannot be a number.');
+      return;
+    }
     if (!text.trim()) {
       setErrorMessage('Text cannot be empty.');
       return;
