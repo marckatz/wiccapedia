@@ -90,7 +90,7 @@ function UserProfile({ user }) {
       })
     })
   }
-  console.log(userPosts)
+  // console.log(userPosts)
   return (
     <div className="container mt-5">
       <h1>My Profile</h1>
@@ -181,11 +181,13 @@ function UserProfile({ user }) {
         <ul>
           {userPosts.map((post, index) => {
             return (
-              <li key={index}>
-                <Link to={`/page/${post.title}`} className="link-info">
-                  {post.title}
-                </Link>
-                <button className="btn btn-outline-secondary btn-sm" style={{ width: "100px" }} onClick={()=>handleDelete(post.id, index)}>DELETE POST</button>
+              <li key={index} >
+                <div className='mb-1'>
+                  <button className="btn btn-outline-danger btn-sm me-1 rounded-circle" title='Delete page' onClick={()=>handleDelete(post.id, index)}>X</button>
+                  <Link to={`/page/${post.title}`} className="link-info text-truncate" >
+                    {post.title}
+                  </Link>
+                </div>
               </li>
             );
           })}
